@@ -27,7 +27,7 @@ const SignUpForm = () => {
 
     // check if user has been authenticated with email and password
 
-    // create a user document from the returns
+    // create a user document from the returns.
     const userDocRef = await createAuthUserWithEmailAndPassword(response.user);
     console.log(userDocRef);
   };
