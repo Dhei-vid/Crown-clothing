@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import {
   createAuthUserWithEmailAndPassword,
-  signInWithGooglePopup,
+  createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
 const defaultFormField = {
@@ -21,15 +21,24 @@ const SignUpForm = () => {
   const onHandleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await signInWithGooglePopup();
-
     // confirm password is the same
+    if (password !== confirmPassword) {
+      return alert("Password does not match");
+    }
 
-    // check if user has been authenticated with email and password
+    try {
+      // check if user has been authenticated with email and password
+      const response = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-    // create a user document from the returns.
-    const userDocRef = await createAuthUserWithEmailAndPassword(response.user);
-    console.log(userDocRef);
+      // create user documents
+      const userDoc = createUserDocumentFromAuth(response.user);
+      console.log(userDoc);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const onChangeHandler = (event) => {
