@@ -45,7 +45,10 @@ export const signInWithGooglePopup = () =>
 // Setting up the database access implementation
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation = {}
+) => {
   if (!userAuth) return;
 
   // doc gets 3 params
@@ -67,6 +70,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalInformation,
       });
     } catch (error) {
       console.error("error from creating user", error.message);

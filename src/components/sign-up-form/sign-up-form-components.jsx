@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import FormInput from "../form-input/form-input.component";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -16,7 +18,9 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormField);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  // console.log(formFields);
+  const resetFormFields = () => {
+    setFormFields(defaultFormField);
+  };
 
   const onHandleSubmit = async (event) => {
     event.preventDefault();
@@ -34,7 +38,11 @@ const SignUpForm = () => {
       );
 
       // create user documents
-      const userDoc = createUserDocumentFromAuth(response.user);
+      const userDoc = await createUserDocumentFromAuth(response.user, {
+        displayName,
+      });
+
+      resetFormFields();
       console.log(userDoc);
     } catch (error) {
       console.log(error.message);
@@ -51,8 +59,8 @@ const SignUpForm = () => {
     <div>
       <h1> Please Sign Up with your email and password </h1>
       <form onSubmit={onHandleSubmit}>
-        <label htmlFor=""> Name </label>
-        <input
+        <FormInput
+          label="Display Name"
           type="text"
           required
           onChange={onChangeHandler}
@@ -60,8 +68,8 @@ const SignUpForm = () => {
           value={displayName}
         />
 
-        <label htmlFor=""> email </label>
-        <input
+        <FormInput
+          label="email"
           type="email"
           required
           onChange={onChangeHandler}
@@ -69,8 +77,8 @@ const SignUpForm = () => {
           value={email}
         />
 
-        <label htmlFor=""> password </label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           required
           onChange={onChangeHandler}
@@ -78,8 +86,8 @@ const SignUpForm = () => {
           value={password}
         />
 
-        <label htmlFor=""> Confirm password </label>
-        <input
+        <FormInput
+          label="Confirm Password"
           type="password"
           required
           onChange={onChangeHandler}
