@@ -7,9 +7,10 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
+import SignInForm from "../../components/sign-in-form/sign-in-form-component";
 import SignUpForm from "../../components/sign-up-form/sign-up-form-components";
 
-const SignIn = () => {
+const Authentication = () => {
   // Works with the google redirect method
   // import signInWithGoogleRedirect and auth from the firebase file we create
   // useEffect(() => {
@@ -22,11 +23,6 @@ const SignIn = () => {
 
   //   fetchdata();
   // }, []);
-
-  const logGoogleUser = async () => {
-    const response = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(response.user);
-  };
 
   /*
   - When we redirect the site to sign in (navigate away from the url), the website basically unmounts all functions implementations because it does not  know if you will return or not. And what happens is we initialize the page again from the beginning when we go back to it. As such the user data is not kept.
@@ -41,11 +37,10 @@ const SignIn = () => {
 
   return (
     <div>
-      <h1>Sign in</h1>
+      <SignInForm />
       <SignUpForm />
-      <button onClick={logGoogleUser}>Sign in with Google Pop</button>
     </div>
   );
 };
 
-export default SignIn;
+export default Authentication;

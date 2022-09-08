@@ -1,6 +1,9 @@
 import { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
+import Button from "../button/button-component";
+
+import "./sign-up-form.styles.scss";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -56,46 +59,55 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1> Please Sign Up with your email and password </h1>
+    <div className="sign-up-container">
+      <h2> Don't have an account?</h2>
+      <h1> Sign Up with your email and password </h1>
       <form onSubmit={onHandleSubmit}>
         <FormInput
           label="Display Name"
-          type="text"
-          required
-          onChange={onChangeHandler}
-          name="displayName"
-          value={displayName}
+          inputProps={{
+            type: "text",
+            required: true,
+            onChange: onChangeHandler,
+            name: "displayName",
+            value: displayName,
+          }}
         />
 
         <FormInput
           label="email"
-          type="email"
-          required
-          onChange={onChangeHandler}
-          name="email"
-          value={email}
+          inputProps={{
+            type: "email",
+            required: true,
+            onChange: onChangeHandler,
+            name: "email",
+            value: email,
+          }}
         />
 
         <FormInput
           label="Password"
-          type="password"
-          required
-          onChange={onChangeHandler}
-          name="password"
-          value={password}
+          inputProps={{
+            type: "password",
+            required: true,
+            onChange: onChangeHandler,
+            name: "password",
+            value: password,
+          }}
         />
 
         <FormInput
           label="Confirm Password"
-          type="password"
-          required
-          onChange={onChangeHandler}
-          name="confirmPassword"
-          value={confirmPassword}
+          inputProps={{
+            type: "password",
+            required: true,
+            onChange: onChangeHandler,
+            name: "confirmPassword",
+            value: confirmPassword,
+          }}
         />
 
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );

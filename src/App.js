@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./routes/home/home-components.jsx";
 import Navigation from "./routes/navigation/navigation-component.jsx";
-import SignIn from "./routes/sign-in/signin-component.jsx";
+import Authentication from "./routes/Authentication/authentication-component.jsx";
 
 const Shop = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
         {/* index == true tells the route that when we match the "/" then the home component should be rendered too */}
         <Route index element={<Home />} />
         <Route path="shop" element={<Shop />} />
-        <Route path="signin" element={<SignIn />} />
+        <Route path="auth" element={<Authentication />} />
       </Route>
     </Routes>
   );

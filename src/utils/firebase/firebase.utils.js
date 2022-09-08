@@ -4,12 +4,14 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
-// this config function enables use to attach this firebase instance to the instance we have created online
+// this config function enables us to attach this firebase instance to the instance we have created online
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDIixH1vIvDegqJ64n5DtVHZNw3q40YqS0",
@@ -54,8 +56,6 @@ export const createUserDocumentFromAuth = async (
   // doc gets 3 params
   const userDocRef = doc(db, "users", userAuth.uid);
 
-  console.log(userDocRef);
-
   const userSnapShot = await getDoc(userDocRef);
   // console.log(userSnapShot);
   // with exists method we can check if a document exists in database
@@ -84,4 +84,11 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+// For the sign in Component
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  return await signInWithEmailAndPassword(auth, email, password);
 };
