@@ -21,7 +21,7 @@ const defaultFormField = {
   password: "",
 };
 
-// create the markup
+// create the markup.
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormField);
   const { email, password } = formFields;
