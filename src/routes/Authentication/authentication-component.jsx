@@ -1,4 +1,4 @@
-// To get the result of the redirect sign in
+// To get the result of the redirect sign in we make use of useEffect hook
 // import { useEffect } from "react";
 // import { getRedirectResult } from "firebase/auth";
 
