@@ -104,4 +104,6 @@ export const signOutUser = async () => {
 // Creating a listener that listens for changes in the code
 // onAuthStateChanged gets two parameters, the auth and a callback function
 export const onAuthStateChangedListener = (callback) =>
+  // the onAuthStateChanged is an open state listener (whenever the auth changes it runs)
+  // the issue is that we need to tell it to unmount when the userContext unmounts (memory leak)
   onAuthStateChanged(auth, callback);

@@ -1,15 +1,12 @@
 // I want to obtain data from the user document and store it inside the context.
 // To do that I need a useContext hook and then bring in the context created
 
-import { useState, useContext } from "react";
+import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button-component";
 
-import { UserContext } from "../../context/user.context";
-
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
@@ -26,16 +23,12 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormField);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
-
   const resetFormFields = () => {
     setFormFields(defaultFormField);
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
-    setCurrentUser(user);
+    await signInWithGooglePopup();
   };
 
   // authenticate user
@@ -47,8 +40,6 @@ const SignInForm = () => {
         email,
         password
       );
-
-      setCurrentUser(user);
 
       resetFormFields();
     } catch (e) {
