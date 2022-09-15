@@ -4,6 +4,7 @@ import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../context/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon.component/cart-icon-component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown-component";
 import "./navigation-styles.scss";
 
 const Navigation = () => {
@@ -36,6 +37,7 @@ const Navigation = () => {
 
           <CartIcon />
         </div>
+        <CartDropdown />
       </div>
       {/* the outlet here makes it possible to render the home and shop pages */}
       <Outlet />;
