@@ -3,6 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../context/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import CartIcon from "../../components/cart-icon.component/cart-icon-component";
 import "./navigation-styles.scss";
 
 const Navigation = () => {
@@ -21,6 +22,7 @@ const Navigation = () => {
           <Link className="nav--link" to="/auth">
             CONTACT
           </Link>
+
           {currentUser ? (
             <span className="nav--link" onClick={signOutUser}>
               {" "}
@@ -31,6 +33,8 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+
+          <CartIcon />
         </div>
       </div>
       {/* the outlet here makes it possible to render the home and shop pages */}
