@@ -2,6 +2,9 @@ import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../context/user.context";
+import { CartContext } from "../../context/cartContext";
+
+// import { cartHandler } from "../../context/cartContext";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon.component/cart-icon-component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown-component";
@@ -9,6 +12,7 @@ import "./navigation-styles.scss";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
   return (
     <Fragment>
@@ -26,8 +30,7 @@ const Navigation = () => {
 
           {currentUser ? (
             <span className="nav--link" onClick={signOutUser}>
-              {" "}
-              SIGN OUT{" "}
+              SIGN OUT
             </span>
           ) : (
             <Link className="nav--link" to="/auth">
@@ -37,7 +40,7 @@ const Navigation = () => {
 
           <CartIcon />
         </div>
-        <CartDropdown />
+        {isCartOpen && <CartDropdown />}
       </div>
       {/* the outlet here makes it possible to render the home and shop pages */}
       <Outlet />;
