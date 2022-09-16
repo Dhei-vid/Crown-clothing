@@ -9,7 +9,7 @@ import "./index.scss";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// by wrapping the App in the browser router there are some implementations that we are allowing the brower router to handle for us like keeong track of previous navigations
+// by wrapping the App in the browser router there are some implementations that we are allowing the brower router to handle for us like keepng track of previous navigations
 root.render(
   <React.StrictMode>
     <BrowserRouter>
