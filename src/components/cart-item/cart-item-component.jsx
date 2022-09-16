@@ -1,9 +1,11 @@
 import "./cart-item-styles.scss";
 
-const CartItem = () => {
+const CartItem = ({ cartitem }) => {
+  const { name, quantity } = cartitem;
   return (
     <div>
-      <h1> item 1 </h1>
+      <h1> {name} </h1>
+      <span> {quantity} </span>
     </div>
   );
 };
