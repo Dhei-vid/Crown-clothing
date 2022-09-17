@@ -7,11 +7,14 @@ const CartDropdown = () => {
   return (
     <div className="cart-dropdown--container">
       <div>
-        {[{ name: "item 1" }, { name: "item 2" }, { name: "item 3" }].map(
-          (items) => (
-            <CartItem cartitem={items} />
-          )
-        )}
+        {[
+          { name: "item 1" },
+          { name: "item 2" },
+          { name: "item 3" },
+          { name: "item 4" },
+        ].map((items) => (
+          <CartItem cartitem={items} />
+        ))}
       </div>
 
       <Button> GO TO CHECKOUT </Button>
