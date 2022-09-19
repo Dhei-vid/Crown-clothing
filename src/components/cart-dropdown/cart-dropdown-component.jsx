@@ -1,21 +1,21 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/cartContext";
+
 import Button from "../button/button-component";
 import CartItem from "../cart-item/cart-item-component";
 
 import "./cart-dropdown-styles.scss";
 
 const CartDropdown = () => {
+  const { cartItems, isCartOpen } = useContext(CartContext);
+
   return (
     <div className="cart-dropdown--container">
       <div>
         {
           // To get the product data we need to leverage off the cart context
-          [
-            { name: "item 1" },
-            { name: "item 2" },
-            { name: "item 3" },
-            { name: "item 4" },
-          ].map((items) => (
-            <CartItem cartitem={items} />
+          cartItems.map((items) => (
+            <CartItem key={items.id} cartitem={items} />
           ))
         }
       </div>
