@@ -1,9 +1,18 @@
 import { createContext, useState } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
-  // find if cartitems contain product to add
-  // if found increment quantity
+  // find if cartitems contain productToadd
+  const foundItems = cartItems.find((item) => item.id === productToAdd.id);
+  // if found increment quantity (what we want is to return a new array)
+  if (foundItems) {
+    return cartItems.map((items) =>
+      items.id === productToAdd.id
+        ? { ...items, quantity: items.quantity + 1 }
+        : items
+    );
+  }
   // return new array with modified cartitems/ new cart items
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
 export const CartContext = createContext({

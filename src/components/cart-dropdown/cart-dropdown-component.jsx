@@ -7,7 +7,7 @@ import CartItem from "../cart-item/cart-item-component";
 import "./cart-dropdown-styles.scss";
 
 const CartDropdown = () => {
-  const { cartItems, isCartOpen } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   return (
     <div className="cart-dropdown--container">
@@ -15,7 +15,7 @@ const CartDropdown = () => {
         {
           // To get the product data we need to leverage off the cart context
           cartItems.map((items) => (
-            <CartItem key={items.id} cartitem={items} />
+            <CartItem key={items.id} cartItems cartitem={items} />
           ))
         }
       </div>
