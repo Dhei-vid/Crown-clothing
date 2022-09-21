@@ -4,8 +4,10 @@ import { CartContext } from "../../context/cartContext";
 import "./cart-icon-style.scss";
 
 const CartIcon = () => {
-  const { isCartOpen, setCartStatus, count } = useContext(CartContext);
-  console.log(count);
+  const { isCartOpen, setCartStatus, count, cartItems } =
+    useContext(CartContext);
+
+  const countValue = cartItems.map;
 
   const toggleIsCartOpen = () => {
     setCartStatus(!isCartOpen);
