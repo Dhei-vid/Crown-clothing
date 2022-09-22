@@ -1,7 +1,7 @@
 import CheckOut from "../../components/checkout-item/checkout-component";
 
 const CheckOutNavigation = () => {
-  <CheckOut />;
+  return <CheckOut />;
 };
 
 export default CheckOutNavigation;
