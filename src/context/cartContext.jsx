@@ -32,8 +32,18 @@ export const CartProvider = ({ children }) => {
     setItemToCart(addCartItem(cartItems, productToAdd));
   };
 
-  const count = cartItems.length;
-  const value = { isCartOpen, setCartStatus, addItemToCart, cartItems, count };
+  // const counter = cartItems.length;
+  const countHandler = (cartItems) => {
+    return cartItems.reduce((count, items) => count + items.quantity, 0);
+  };
+
+  const value = {
+    isCartOpen,
+    setCartStatus,
+    addItemToCart,
+    cartItems,
+    countHandler,
+  };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
