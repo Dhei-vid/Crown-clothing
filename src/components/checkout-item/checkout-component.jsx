@@ -8,10 +8,13 @@ const CheckOut = () => {
   return (
     <div>
       {cartItems.map((items) => {
+        const { id, name, imageUrl, price, quantity } = items;
         return (
-          <div key={items.id}>
-            <h1>{items.name} </h1>
-            <span> $50</span>
+          <div key={id}>
+            <img src={imageUrl} alt="added product to cart" />
+            <h1>{name} </h1>
+            <h3> {quantity} </h3>
+            <h4> ${price} </h4>
           </div>
         );
       })}
