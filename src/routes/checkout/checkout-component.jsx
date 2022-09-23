@@ -1,12 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../context/cartContext";
 import "./checkout.styles.scss";
 
-// const increase = document.querySelector(".increase");
-// const qtyValue = document.querySelector(".qty");
-
 const CheckOut = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, addItemToCart, subItemToCart } = useContext(CartContext);
 
   return (
     <div>
@@ -19,12 +16,17 @@ const CheckOut = () => {
             <h1>{name} </h1>
 
             <div className="counter">
-              <span className="decrease"></span>
+              <span
+                className="decrease"
+                onClick={() => subItemToCart(items)}
+              ></span>
               <span className="qty"> {quantity} </span>
-              <span className="increase"></span>
+              <span
+                className="increase"
+                onClick={() => addItemToCart(items)}
+              ></span>
             </div>
-
-            <h4> ${price * quantity} </h4>
+            <h4> ${price} </h4>
           </div>
         );
       })}

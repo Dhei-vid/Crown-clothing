@@ -11,6 +11,23 @@ const addCartItem = (cartItems, productToAdd) => {
         : items
     );
   }
+
+  // return new array with modified cartitems/ new cart items
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
+};
+
+const removeCartItem = (cartItems, productToAdd) => {
+  // find if cartitems contain productToadd
+  const foundItems = cartItems.find((item) => item.id === productToAdd.id);
+  // if found decrement quantity (what we want is to return a new array)
+  if (foundItems) {
+    return cartItems.map((items) =>
+      items.id === productToAdd.id
+        ? { ...items, quantity: items.quantity - 1 }
+        : items
+    );
+  }
+
   // return new array with modified cartitems/ new cart items
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
@@ -20,6 +37,7 @@ export const CartContext = createContext({
   setCartStatus: () => {},
   cartItems: [],
   addItemToCart: () => {},
+  subItemToCart: () => {},
 });
 
 export const CartProvider = ({ children }) => {
@@ -32,6 +50,10 @@ export const CartProvider = ({ children }) => {
     setItemToCart(addCartItem(cartItems, productToAdd));
   };
 
+  const subItemToCart = (productToAdd) => {
+    setItemToCart(removeCartItem(cartItems, productToAdd));
+  };
+
   const countHandler = (cartItems) => {
     return cartItems.reduce((count, items) => count + items.quantity, 0);
   };
@@ -40,6 +62,7 @@ export const CartProvider = ({ children }) => {
     isCartOpen,
     setCartStatus,
     addItemToCart,
+    subItemToCart,
     cartItems,
     countHandler,
   };

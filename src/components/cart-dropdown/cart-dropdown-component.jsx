@@ -26,7 +26,7 @@ const CartDropdown = () => {
         }
       </div>
 
-      <Button onClick={() => cartNavigate()}> GO TO CHECKOUT </Button>
+      <Button onClick={cartNavigate}> GO TO CHECKOUT </Button>
     </div>
   );
 };
