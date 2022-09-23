@@ -16,20 +16,30 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (cartItems, productToAdd) => {
+const removeCartItem = (cartItems, productToRemove) => {
   // find if cartitems contain productToadd
-  const foundItems = cartItems.find((item) => item.id === productToAdd.id);
+  const foundItems = cartItems.find((item) => item.id === productToRemove.id);
+
+  // check if the quantity is equal to 1
+  const quantityCheck = cartItems.filter((item) => item.quantity === 1);
+  if (quantityCheck) {
+    return cartItems.map((item) => null);
+  }
+  
+  
+  
+
   // if found decrement quantity (what we want is to return a new array)
   if (foundItems) {
     return cartItems.map((items) =>
-      items.id === productToAdd.id
+      items.id === productToRemove.id
         ? { ...items, quantity: items.quantity - 1 }
         : items
     );
   }
 
   // return new array with modified cartitems/ new cart items
-  return [...cartItems, { ...productToAdd, quantity: 1 }];
+  return [...cartItems, { ...productToRemove, quantity: 1 }];
 };
 
 export const CartContext = createContext({
@@ -37,7 +47,7 @@ export const CartContext = createContext({
   setCartStatus: () => {},
   cartItems: [],
   addItemToCart: () => {},
-  subItemToCart: () => {},
+  removeItemFromCart: () => {},
 });
 
 export const CartProvider = ({ children }) => {
@@ -50,8 +60,8 @@ export const CartProvider = ({ children }) => {
     setItemToCart(addCartItem(cartItems, productToAdd));
   };
 
-  const subItemToCart = (productToAdd) => {
-    setItemToCart(removeCartItem(cartItems, productToAdd));
+  const removeItemFromCart = (productToRemove) => {
+    setItemToCart(removeCartItem(cartItems, productToRemove));
   };
 
   const countHandler = (cartItems) => {
@@ -62,7 +72,7 @@ export const CartProvider = ({ children }) => {
     isCartOpen,
     setCartStatus,
     addItemToCart,
-    subItemToCart,
+    removeItemFromCart,
     cartItems,
     countHandler,
   };
