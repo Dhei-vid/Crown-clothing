@@ -1,6 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/cartContext";
 import "./checkout.styles.scss";
+
+// const increase = document.querySelector(".increase");
+// const qtyValue = document.querySelector(".qty");
 
 const CheckOut = () => {
   const { cartItems } = useContext(CartContext);
@@ -21,7 +24,7 @@ const CheckOut = () => {
               <span className="increase"></span>
             </div>
 
-            <h4> ${price} </h4>
+            <h4> ${price * quantity} </h4>
           </div>
         );
       })}

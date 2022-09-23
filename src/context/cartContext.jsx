@@ -32,7 +32,6 @@ export const CartProvider = ({ children }) => {
     setItemToCart(addCartItem(cartItems, productToAdd));
   };
 
-  // const counter = cartItems.length;
   const countHandler = (cartItems) => {
     return cartItems.reduce((count, items) => count + items.quantity, 0);
   };
