@@ -1,20 +1,19 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/cartContext";
-import "./checkout-styles.scss";
+import "./checkout.styles.scss";
 
 const CheckOut = () => {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div>
+    <div className="Checkmark">
       {cartItems.map((items) => {
-        const { id, name, imageUrl, price, quantity } = items;
         return (
-          <div key={id}>
-            <img src={imageUrl} alt="added product to cart" />
-            <h1>{name} </h1>
-            <h3> {quantity} </h3>
-            <h4> ${price} </h4>
+          <div key={items.id}>
+            <img src={items.imageUrl} alt="added product to cart" />
+            <h1>{items.name} </h1>
+            <h3> {items.quantity} </h3>
+            <h4> {items.price} </h4>
           </div>
         );
       })}
