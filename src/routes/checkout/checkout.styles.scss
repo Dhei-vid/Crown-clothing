@@ -1,0 +1,22 @@
+.counter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.decrease,
+.increase {
+  width: 10px;
+  height: 10px;
+  transition: 0.5s;
+  float: left;
+  box-shadow: -2px 2px 0 black;
+  cursor: pointer;
+}
+
+.decrease {
+  transform: rotate(45deg);
+}
+
+.increase {
+  transform: rotate(-135deg);
+}

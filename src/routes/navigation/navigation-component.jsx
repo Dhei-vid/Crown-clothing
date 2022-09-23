@@ -42,7 +42,7 @@ const Navigation = () => {
         {isCartOpen && <CartDropdown />}
       </div>
       {/* the outlet here makes it possible to render the home and shop pages */}
-      <Outlet />;
+      <Outlet />
     </Fragment>
   );
 };

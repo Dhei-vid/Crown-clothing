@@ -6,14 +6,22 @@ const CheckOut = () => {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div className="Checkmark">
+    <div>
       {cartItems.map((items) => {
+        const { id, name, imageUrl, price, quantity } = items;
+
         return (
-          <div key={items.id}>
-            <img src={items.imageUrl} alt="added product to cart" />
-            <h1>{items.name} </h1>
-            <h3> {items.quantity} </h3>
-            <h4> {items.price} </h4>
+          <div key={id}>
+            <img src={imageUrl} alt="added product to cart" />
+            <h1>{name} </h1>
+
+            <div className="counter">
+              <span className="decrease"></span>
+              <span className="qty"> {quantity} </span>
+              <span className="increase"></span>
+            </div>
+
+            <h4> ${price} </h4>
           </div>
         );
       })}
