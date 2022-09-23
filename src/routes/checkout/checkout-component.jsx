@@ -7,10 +7,9 @@ const CheckOut = () => {
     useContext(CartContext);
 
   return (
-    <div>
+    <div className="checkout-container">
       {cartItems.map((items) => {
         const { id, name, imageUrl, price, quantity } = items;
-
         return (
           <div key={id}>
             <img src={imageUrl} alt="added product to cart" />

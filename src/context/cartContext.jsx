@@ -21,25 +21,17 @@ const removeCartItem = (cartItems, productToRemove) => {
   const foundItems = cartItems.find((item) => item.id === productToRemove.id);
 
   // check if the quantity is equal to 1
-  const quantityCheck = cartItems.filter((item) => item.quantity === 1);
-  if (quantityCheck) {
-    return cartItems.map((item) => null);
+  if (foundItems.quantity === 1) {
+    // for found items that have an id of 1, 
+    return cartItems.filter((item) => item.id !== productToRemove.id);
   }
-  
-  
-  
 
   // if found decrement quantity (what we want is to return a new array)
-  if (foundItems) {
-    return cartItems.map((items) =>
-      items.id === productToRemove.id
-        ? { ...items, quantity: items.quantity - 1 }
-        : items
-    );
-  }
-
-  // return new array with modified cartitems/ new cart items
-  return [...cartItems, { ...productToRemove, quantity: 1 }];
+  return cartItems.map((items) =>
+    items.id === productToRemove.id
+      ? { ...items, quantity: items.quantity - 1 }
+      : items
+  );
 };
 
 export const CartContext = createContext({
