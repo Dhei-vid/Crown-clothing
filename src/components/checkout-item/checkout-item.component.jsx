@@ -16,8 +16,8 @@ const CheckoutItem = ({ cartItem }) => {
       <span className="decrease"></span>
       <span className="quantity"> {quantity} </span>
       <span className="increase"></span>
-
       <span className="price"> ${price} </span>
+      <span className="remove-button">&#10005;</span>
     </div>
   );
 };
