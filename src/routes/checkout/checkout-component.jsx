@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/cartContext";
+
+import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import "./checkout.styles.scss";
 
 const CheckOut = () => {
@@ -9,37 +11,28 @@ const CheckOut = () => {
   return (
     <div className="checkout-container">
       <div className="checkout-header">
-        <span>Product</span>
-        <span>Description</span>
-        <span>Quantity</span>
-        <span>Price</span>
-        <span>Remove</span>
+        <div className="header-block">
+          <span>Product</span>
+        </div>
+        <div className="header-block">
+          <span>Description</span>
+        </div>
+        <div className="header-block">
+          <span>Quantity</span>
+        </div>
+        <div className="header-block">
+          <span>Price</span>
+        </div>
+        <div className="header-block">
+          <span>Remove</span>
+        </div>
       </div>
 
-      {cartItems.map((items) => {
-        const { id, name, imageUrl, price, quantity } = items;
-        return (
-          <div key={id}>
-            <img src={imageUrl} alt="added product to cart" />
-            <span className="checkout-header">{name} </span>
-
-            <div className="counter">
-              <span
-                className="decrease"
-                onClick={() => removeItemFromCart(items)}
-              ></span>
-              <span className="qty"> {quantity} </span>
-              <span
-                className="increase"
-                onClick={() => addItemToCart(items)}
-              ></span>
-            </div>
-            <h4> ${price} </h4>
-          </div>
-        );
-      })}
+      {cartItems.map((items) => (
+        <CheckoutItem key={items.id} cartItem={items} />
+      ))}
       <div className="total">
-        <h1>Total</h1>
+        <span>total</span>
       </div>
     </div>
   );
