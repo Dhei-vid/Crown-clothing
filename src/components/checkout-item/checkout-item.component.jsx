@@ -13,9 +13,11 @@ const CheckoutItem = ({ cartItem }) => {
         <img src={imageUrl} alt="added product to cart" />
       </div>
       <span className="name">{name} </span>
-      <span className="decrease"></span>
-      <span className="quantity"> {quantity} </span>
-      <span className="increase"></span>
+      <span className="quantity">
+        <div className="arrow">&lt;</div>
+        <div className="value">{quantity}</div>
+        <div className="arrow">&gt;</div>
+      </span>
       <span className="price"> ${price} </span>
       <span className="remove-button">&#10005;</span>
     </div>
