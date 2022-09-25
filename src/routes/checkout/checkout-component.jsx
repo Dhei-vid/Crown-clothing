@@ -8,12 +8,20 @@ const CheckOut = () => {
 
   return (
     <div className="checkout-container">
+      <div className="checkout-header">
+        <span>Product</span>
+        <span>Description</span>
+        <span>Quantity</span>
+        <span>Price</span>
+        <span>Remove</span>
+      </div>
+
       {cartItems.map((items) => {
         const { id, name, imageUrl, price, quantity } = items;
         return (
           <div key={id}>
             <img src={imageUrl} alt="added product to cart" />
-            <h1>{name} </h1>
+            <span className="checkout-header">{name} </span>
 
             <div className="counter">
               <span
@@ -30,7 +38,7 @@ const CheckOut = () => {
           </div>
         );
       })}
-      <div>
+      <div className="total">
         <h1>Total</h1>
       </div>
     </div>
