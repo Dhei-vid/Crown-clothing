@@ -1,5 +1,6 @@
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -11,7 +12,20 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+/**
+ * To upload our json file to firestore, I need the collection method and the writeBatch method
+ * collection method enables use to get a collection reference like the user doc reference
+ */
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 // this config function enables us to attach this firebase instance to the instance we have created online
 // Your web app's Firebase configuration
@@ -27,9 +41,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-// to use google authentication we need to first off initialze a google provider
-// GoogleAuthProvider (providers in general) are instantiated as classes
-// Just as there is google provider there is also facebook provider and many more
+/**
+ * to use google authentication we need to first off initialze a google provider
+ * GoogleAuthProvider (providers in general) are instantiated as classes
+ * Just as there is google provider there is also facebook provider and many more
+ */
 const googleProvider = new GoogleAuthProvider();
 
 // setcustomparameters are primarily for google authentication providers
@@ -48,6 +64,43 @@ export const signInWithGooglePopup = () =>
 
 // Setting up the database access implementation
 export const db = getFirestore();
+
+// setting up the collection reference
+export const addCollectionDocuments = async (collectionKey, objectsToAdd) => {
+  // To create the collection reference
+  const collectionRef = collection(db, collectionKey);
+
+  // setting up a batch to enable a transaction
+  const batch = writeBatch(db);
+
+  /**
+   * for creating the batch for each of the objects items
+   * 1. Get the document reference
+   * 2. I want to batch.set on te document reference given by firebase
+   * 3. I have to await firing the batch
+   */
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log("done");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  const querySnapShot = await getDocs(q);
+  const categoryMap = querySnapShot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth,
