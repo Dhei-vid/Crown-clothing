@@ -1,6 +1,6 @@
 import "./checkout-item.styles.scss";
 
-const CheckoutItem = ({ cartItem, reduce, increase }) => {
+const CheckoutItem = ({ cartItem, reduce, increase, deleteItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
 
   return (
@@ -19,7 +19,9 @@ const CheckoutItem = ({ cartItem, reduce, increase }) => {
         </div>
       </span>
       <span className="price"> ${price} </span>
-      <span className="remove-button">&#10005;</span>
+      <span className="remove-button" onClick={() => deleteItem(cartItem)}>
+        &#10005;
+      </span>
     </div>
   );
 };
