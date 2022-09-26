@@ -1,7 +1,7 @@
 import "./checkout-item.styles.scss";
 
 const CheckoutItem = ({ cartItem, reduce, increase, deleteItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+  const { name, imageUrl, quantity, price } = cartItem;
 
   const removeItemHandler = () => reduce(cartItem);
   const addItemHandler = () => increase(cartItem);
@@ -22,7 +22,7 @@ const CheckoutItem = ({ cartItem, reduce, increase, deleteItem }) => {
           &gt;
         </div>
       </span>
-      <span className="price"> ${price} </span>
+      <span className="price"> ${price * quantity} </span>
       <span className="remove-button" onClick={clearItemHandler}>
         &#10005;
       </span>

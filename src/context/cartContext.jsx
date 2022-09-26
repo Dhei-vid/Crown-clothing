@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
 
 // Add cart items by incrementing quantity
@@ -40,6 +41,14 @@ const removeCartItem = (cartItems, productToRemove) => {
 const deleteCartItems = (cartItems, itemToDelete) =>
   cartItems.filter((item) => item.id !== itemToDelete.id);
 
+// finding the total price for all items in the cart
+const totalPrice = (cartItems) => {
+  return cartItems.reduce(
+    (total, items) => total + items.price * items.quantity,
+    0
+  );
+};
+
 export const CartContext = createContext({
   isCartOpen: false,
   total: 0,
@@ -73,8 +82,14 @@ export const CartProvider = ({ children }) => {
     setItemToCart(deleteCartItems(cartItems, itemToDelete));
   };
 
+  // I used the use Effect because I wanted to update the DOM
+  useEffect(() => {
+    setTotal(totalPrice(cartItems));
+  }, [cartItems]);
+
   const value = {
     isCartOpen,
+    total,
     setCartStatus,
     addItemToCart,
     removeItemFromCart,

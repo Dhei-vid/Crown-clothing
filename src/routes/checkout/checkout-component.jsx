@@ -5,7 +5,7 @@ import CheckoutItem from "../../components/checkout-item/checkout-item.component
 import "./checkout.styles.scss";
 
 const CheckOut = () => {
-  const { cartItems, addItemToCart, removeItemFromCart, clearCartItem } =
+  const { cartItems, addItemToCart, removeItemFromCart, clearCartItem, total } =
     useContext(CartContext);
 
   return (
@@ -38,7 +38,7 @@ const CheckOut = () => {
         />
       ))}
 
-      <span className="total">total: $</span>
+      <span className="total">total: ${total}</span>
     </div>
   );
 };
