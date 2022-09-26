@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 
+// Add cart items by incrementing quantity
 const addCartItem = (cartItems, productToAdd) => {
   // find if cartitems contain productToadd
   const foundItems = cartItems.find((item) => item.id === productToAdd.id);
@@ -16,6 +17,7 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+// remove cart items by decrementing quantity
 const removeCartItem = (cartItems, productToRemove) => {
   // find if cartitems contain productToadd
   const foundItems = cartItems.find((item) => item.id === productToRemove.id);
@@ -34,11 +36,13 @@ const removeCartItem = (cartItems, productToRemove) => {
   );
 };
 
+// delete items from cart
 const deleteCartItems = (cartItems, itemToDelete) =>
   cartItems.filter((item) => item.id !== itemToDelete.id);
 
 export const CartContext = createContext({
   isCartOpen: false,
+  total: 0,
   setCartStatus: () => {},
   cartItems: [],
   addItemToCart: () => {},
@@ -49,6 +53,7 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setCartStatus] = useState(false);
   const [cartItems, setItemToCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
   // creating a function that triggers when the user click the add to cart button
   // the function receives the product data and decides if to create a new cart item if empty or find the old data and increase it by one
