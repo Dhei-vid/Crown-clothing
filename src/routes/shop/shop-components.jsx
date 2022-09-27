@@ -12,11 +12,11 @@ const Shop = () => {
     /* this empty tag is a shorthand for fragment */
     <>
       {Object.keys(categoriesMap).map((title) => (
-        <Fragment>
+        <Fragment key={title}>
           <h2>{title}</h2>
           <div className="products--container">
             {categoriesMap[title].map((prod) => (
-              <ProductCard key={prod.id} psroducts={prod} />
+              <ProductCard key={prod.id} products={prod} />
             ))}
           </div>
         </Fragment>
