@@ -14,13 +14,15 @@ const Category = () => {
     setProducts(categoriesMap[category]);
   }, [category, categoriesMap]);
 
+  console.log(products);
+
   return (
     <div className="category-container">
       {
         // this is a safe guard built so the code does not run unless products evaluates to true
         // Good practice for when you have data that runs asynchronously
         products &&
-          products.map((prod) => <ProductCard key={prod.id} product={prod} />)
+          products.map((prod) => <ProductCard key={prod.id} products={prod} />)
       }
     </div>
   );
