@@ -13,7 +13,7 @@ const App = () => {
       <Route path="/" element={<Navigation />}>
         {/* index == true tells the route that when we match the "/" then the home component should be rendered too */}
         <Route index element={<Home />} />
-        <Route path="shop" element={<Shop />} />
+        <Route path="shop/*" element={<Shop />} />
         <Route path="auth" element={<Authentication />} />
         <Route path="checkout" element={<CheckOut />} />
       </Route>
