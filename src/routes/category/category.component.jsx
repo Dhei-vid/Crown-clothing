@@ -14,8 +14,6 @@ const Category = () => {
     setProducts(categoriesMap[category]);
   }, [category, categoriesMap]);
 
-  console.log(products);
-
   return (
     <div className="category-container">
       {
