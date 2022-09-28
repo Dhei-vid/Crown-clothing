@@ -15,6 +15,7 @@ export const DirectoryItemContainer = styled.div`
 
      &:hover {
        cursor: pointer;
+       
 
        & .background-image {
          transform: scale(1.1);
@@ -45,6 +46,10 @@ export const DirectoryItemBody = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;
 
 export const BackgroundImage = styled.div`
@@ -52,6 +57,11 @@ export const BackgroundImage = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+  }
 `;
 
 export const Header = styled.h1`
