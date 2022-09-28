@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { CategoriesContext } from "../../context/categories.context";
 import ProductCard from "../../components/product-card/product-card.component";
 
-import "./category-styles.scss";
+import { CategoryContainer } from "./category-styles";
+// import "./category-styles.jsx";
 
 const Category = () => {
   const { category } = useParams();
@@ -19,7 +20,7 @@ const Category = () => {
       <div>
         <h2>{category.toUpperCase()}</h2>
       </div>
-      <div className="category-container">
+      <CategoryContainer>
         {
           // this is a safe guard built so the code does not run unless products evaluates to true
           // Good practice for when you have data that runs asynchronously
@@ -28,7 +29,7 @@ const Category = () => {
               <ProductCard key={prod.id} products={prod} />
             ))
         }
-      </div>
+      </CategoryContainer>
     </>
   );
 };
