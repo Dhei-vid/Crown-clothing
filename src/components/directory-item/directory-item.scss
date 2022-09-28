@@ -1,4 +1,4 @@
-.category-item-container {
+.directory-item-container {
   min-width: 30%;
   height: 250px;
   flex: 1 1 auto;
@@ -7,7 +7,7 @@
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
-  // overflow: hidden;
+  overflow: hidden;
 
   &:hover {
     cursor: pointer;
@@ -17,7 +17,7 @@
       transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
 
-    & .category-body-container {
+    & .directory-item-body {
       opacity: 0.9;
     }
   }
@@ -41,7 +41,7 @@
     background-position: center;
   }
 
-  .category-body-container {
+  .directory-item-body {
     height: 8rem;
     padding: 0 30px;
     display: flex;
