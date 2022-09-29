@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button-component";
+import Button, { button_type_classes } from "../button/button-component";
 
 import { SignUpContainer, Header } from "./sign-up-form.styles.jsx";
 
@@ -107,7 +107,9 @@ const SignUpForm = () => {
           }}
         />
 
-        <Button type="submit">Sign Up</Button>
+        <Button button_type={button_type_classes.base} type="submit">
+          Sign Up
+        </Button>
       </form>
     </SignUpContainer>
   );

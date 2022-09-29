@@ -2,12 +2,12 @@ import { useContext } from "react";
 
 import { CartContext } from "../../context/cartContext";
 
-import Button from "../button/button-component";
+import { button_type_classes } from "../button/button-component";
 import {
   ProductCardContainer,
   Image,
-  ButtonStyle,
   Name,
+  OpaqueButton,
   Footer,
   Price,
 } from "./product-card.style.jsx";
@@ -28,9 +28,12 @@ const ProductCard = ({ products }) => {
         <Price as="span"> ${price} </Price>
       </Footer>
 
-      <Button button_type="inverted" onClick={addItemToCartHandler}>
+      <OpaqueButton
+        button_type={button_type_classes.inverted}
+        onClick={addItemToCartHandler}
+      >
         Add To Cart
-      </Button>
+      </OpaqueButton>
     </ProductCardContainer>
   );
 };

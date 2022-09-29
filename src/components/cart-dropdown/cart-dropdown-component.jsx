@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/cartContext";
 import { useNavigate } from "react-router-dom";
 
-import Button from "../button/button-component";
+import Button, { button_type_classes } from "../button/button-component";
 import CartItem from "../cart-item/cart-item-component";
 
 import "./cart-dropdown-styles.scss";
@@ -26,7 +26,9 @@ const CartDropdown = () => {
         }
       </div>
 
-      <Button onClick={cartNavigate}> GO TO CHECKOUT </Button>
+      <Button type={button_type_classes.base} onClick={cartNavigate}>
+        GO TO CHECKOUT
+      </Button>
     </div>
   );
 };

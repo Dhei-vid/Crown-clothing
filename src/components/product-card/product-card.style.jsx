@@ -1,5 +1,3 @@
-// Come back later
-
 import styled from "styled-components";
 import Button from "../button/button-component";
 
@@ -40,6 +38,16 @@ export const ButtonStyle = styled(Button)`
   position: absolute;
   top: 255px;
   display: none;
+
+  &:hover {
+    img {
+      opacity: 0.8;
+    }
+`;
+
+export const OpaqueButton = styled(ButtonStyle)`
+  opacity: 0.85;
+  display: flex;
 `;
 
 export const Footer = styled.div`
@@ -64,14 +72,8 @@ export const Price = styled.div`
 
 //   }
 
-//   &:hover {
-//     img {
-//       opacity: 0.8;
-//     }
-
 //     button {
-//       opacity: 0.85;
-//       display: flex;
+
 //     }
 //   }
 
