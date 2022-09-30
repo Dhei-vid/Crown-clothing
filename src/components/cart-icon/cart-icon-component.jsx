@@ -24,7 +24,7 @@ const CartIcon = () => {
   return (
     <CartIconContainer onClick={toggleIsCartOpen}>
       <ShoppingIconStyle />
-      <ItemCount as="span">{countIcon()}</ItemCount>
+      <ItemCount>{countIcon()}</ItemCount>
     </CartIconContainer>
   );
 };
