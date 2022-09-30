@@ -9,10 +9,12 @@ import {
 const DirectoryItem = ({ category }) => {
   const { title, imageUrl, routes } = category;
   const navigate = useNavigate();
+
+  const onClickNavigate = () => navigate(`${routes}`);
   return (
     <DirectoryItemContainer>
       <BackgroundImage imageUrl={imageUrl} />
-      <DirectoryItemBody onClick={() => navigate(`${routes}`)}>
+      <DirectoryItemBody onClick={onClickNavigate}>
         <h2> {title} </h2>
         <p> Shop now </p>
       </DirectoryItemBody>
