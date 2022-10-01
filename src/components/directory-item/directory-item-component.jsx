@@ -23,3 +23,7 @@ const DirectoryItem = ({ category }) => {
 };
 
 export default DirectoryItem;
+
+/**
+ * Return the original CSS styles but commented
+ */
