@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 // Add cart items by incrementing quantity
 const addCartItem = (cartItems, productToAdd) => {
@@ -37,6 +36,11 @@ const removeCartItem = (cartItems, productToRemove) => {
   );
 };
 
+// counting the cart items
+const countCartItems = (cartItems) => {
+  return cartItems.reduce((count, items) => count + items.quantity, 0);
+};
+
 // delete items from cart
 const deleteCartItems = (cartItems, itemToDelete) =>
   cartItems.filter((item) => item.id !== itemToDelete.id);
@@ -52,6 +56,7 @@ const totalPrice = (cartItems) => {
 export const CartContext = createContext({
   isCartOpen: false,
   total: 0,
+  count: 0,
   setCartStatus: () => {},
   cartItems: [],
   addItemToCart: () => {},
@@ -59,10 +64,81 @@ export const CartContext = createContext({
   clearCartItem: () => {},
 });
 
+export const CART_ACTION_TYPES = {
+  SET_CURRENT_TOTAL: "SET_CURRENT_TOTAL",
+  SET_CURRENT_COUNT: "SET_CURRENT_COUNT",
+  SET_CART_STATUS: "SET_CART_STATUS",
+  SET_CART_ITEM: "SET_CART_ITEM",
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case CART_ACTION_TYPES.SET_CURRENT_TOTAL:
+      return {
+        total: payload,
+      };
+    case CART_ACTION_TYPES.SET_CURRENT_COUNT:
+      return {
+        count: payload,
+      };
+    case CART_ACTION_TYPES.SET_CART_STATUS:
+      return {
+        isCartOpen: payload,
+      };
+    case CART_ACTION_TYPES.SET_CART_ITEM:
+      return {
+        cartItems: payload,
+      };
+    default:
+      throw new Error("Invalid action type: " + type);
+  }
+};
+
+const INITIAL_STATE = {
+  isCartOpen: false,
+  total: 0,
+  count: 0,
+  cartItems: [],
+};
+
 export const CartProvider = ({ children }) => {
-  const [isCartOpen, setCartStatus] = useState(false);
-  const [cartItems, setItemToCart] = useState([]);
-  const [total, setTotal] = useState(0);
+  // const [isCartOpen, setCartStatus] = useState(false);
+  // const [cartItems, setItemToCart] = useState([]);
+  // const [count, setCount] = useState(0);
+  // const [total, setTotal] = useState(0);
+
+  const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+  const { isCartOpen, total, count, cartItems } = state;
+
+  const setItemToCart = (cartItems) => {
+    dispatch({
+      type: CART_ACTION_TYPES.SET_CART_ITEM,
+      payload: cartItems,
+    });
+  };
+
+  const setTotal = (total) => {
+    dispatch({
+      type: CART_ACTION_TYPES.SET_CURRENT_TOTAL,
+      payload: total,
+    });
+  };
+
+  const setCount = (count) => {
+    dispatch({
+      type: CART_ACTION_TYPES.SET_CURRENT_COUNT,
+      payload: count,
+    });
+  };
+
+  const setCartStatus = (cartStatus) => {
+    dispatch({
+      type: CART_ACTION_TYPES.SET_CART_STATUS,
+      payload: cartStatus,
+    });
+  };
 
   // creating a function that triggers when the user click the add to cart button
   // the function receives the product data and decides if to create a new cart item if empty or find the old data and increase it by one
@@ -74,10 +150,6 @@ export const CartProvider = ({ children }) => {
     setItemToCart(removeCartItem(cartItems, productToRemove));
   };
 
-  const countHandler = (cartItems) => {
-    return cartItems.reduce((count, items) => count + items.quantity, 0);
-  };
-
   const clearCartItem = (itemToDelete) => {
     setItemToCart(deleteCartItems(cartItems, itemToDelete));
   };
@@ -87,6 +159,11 @@ export const CartProvider = ({ children }) => {
     setTotal(totalPrice(cartItems));
   }, [cartItems]);
 
+  useEffect(() => {
+    setCount(countCartItems(cartItems));
+  }, [cartItems]);
+
+  console.log(cartItems);
   const value = {
     isCartOpen,
     total,
@@ -94,7 +171,7 @@ export const CartProvider = ({ children }) => {
     addItemToCart,
     removeItemFromCart,
     cartItems,
-    countHandler,
+    count,
     clearCartItem,
   };
 

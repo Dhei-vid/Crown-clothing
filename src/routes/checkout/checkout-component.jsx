@@ -12,6 +12,7 @@ import {
 const CheckOut = () => {
   const { cartItems, addItemToCart, removeItemFromCart, clearCartItem, total } =
     useContext(CartContext);
+  console.log(cartItems);
 
   return (
     <CheckoutContainer>

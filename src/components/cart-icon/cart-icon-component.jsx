@@ -8,11 +8,11 @@ import {
 } from "./cart-icon-style.jsx";
 
 const CartIcon = () => {
-  const { isCartOpen, setCartStatus, cartItems, countHandler } =
+  const { isCartOpen, setCartStatus, cartIems, count } =
     useContext(CartContext);
 
   const countIcon = () =>
-    countHandler(cartItems).toLocaleString("en-US", {
+    count.toLocaleString("en-US", {
       minimumIntegerDigits: 2,
       useGrouping: false,
     });

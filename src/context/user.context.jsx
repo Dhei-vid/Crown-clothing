@@ -1,7 +1,7 @@
 // Converting context to reduce
 
 // To use context we have to first create a react context
-import { createContext, useState, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 import {
   onAuthStateChangedListener,
@@ -19,7 +19,6 @@ export const USER_ACTION_TYPES = {
 };
 
 const userReducer = (state, action) => {
-  console.log(action);
   // the state value refers to the previous state value
   // the action takes two arguments, the type(could be string) and the payload (which is the new state value)
   const { type, payload } = action;
@@ -55,7 +54,6 @@ export const UserProvider = ({ children }) => {
 
   // const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
-  console.log(currentUser);
 
   // Instead of using the useContext to store details of the authenticated user from the sign out and sign in
   // throughout the form in several places, we want to store them in a singular place here
