@@ -36,11 +36,6 @@ const removeCartItem = (cartItems, productToRemove) => {
   );
 };
 
-// counting the cart items
-const countCartItems = (cartItems) => {
-  return cartItems.reduce((count, items) => count + items.quantity, 0);
-};
-
 // delete items from cart
 const deleteCartItems = (cartItems, itemToDelete) =>
   cartItems.filter((item) => item.id !== itemToDelete.id);
@@ -77,18 +72,22 @@ const cartReducer = (state, action) => {
   switch (type) {
     case CART_ACTION_TYPES.SET_CURRENT_TOTAL:
       return {
+        ...state,
         total: payload,
       };
     case CART_ACTION_TYPES.SET_CURRENT_COUNT:
       return {
+        ...state,
         count: payload,
       };
     case CART_ACTION_TYPES.SET_CART_STATUS:
       return {
+        ...state,
         isCartOpen: payload,
       };
     case CART_ACTION_TYPES.SET_CART_ITEM:
       return {
+        ...state,
         cartItems: payload,
       };
     default:
@@ -104,34 +103,26 @@ const INITIAL_STATE = {
 };
 
 export const CartProvider = ({ children }) => {
-  // const [isCartOpen, setCartStatus] = useState(false);
-  // const [cartItems, setItemToCart] = useState([]);
-  // const [count, setCount] = useState(0);
-  // const [total, setTotal] = useState(0);
-
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
   const { isCartOpen, total, count, cartItems } = state;
 
-  const setItemToCart = (cartItems) => {
+  const setItemToCart = (items) =>
     dispatch({
       type: CART_ACTION_TYPES.SET_CART_ITEM,
-      payload: cartItems,
+      payload: items,
     });
-  };
 
-  const setTotal = (total) => {
+  const setTotal = (totalValue) =>
     dispatch({
       type: CART_ACTION_TYPES.SET_CURRENT_TOTAL,
-      payload: total,
+      payload: totalValue,
     });
-  };
 
-  const setCount = (count) => {
+  const setCount = (countValue) =>
     dispatch({
       type: CART_ACTION_TYPES.SET_CURRENT_COUNT,
-      payload: count,
+      payload: countValue,
     });
-  };
 
   const setCartStatus = (cartStatus) => {
     dispatch({
@@ -160,10 +151,15 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   useEffect(() => {
-    setCount(countCartItems(cartItems));
+    // counting the cart items
+    const countCartItems = cartItems.reduce(
+      (count, items) => count + items.quantity,
+      0
+    );
+
+    setCount(countCartItems);
   }, [cartItems]);
 
-  console.log(cartItems);
   const value = {
     isCartOpen,
     total,
