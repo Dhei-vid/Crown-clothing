@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import { createAction } from "../utils/reducers/reducers.utils";
 
 // Add cart items by incrementing quantity
 const addCartItem = (cartItems, productToAdd) => {
@@ -34,6 +35,11 @@ const removeCartItem = (cartItems, productToRemove) => {
       ? { ...items, quantity: items.quantity - 1 }
       : items
   );
+};
+
+// counting the cart items
+const countCartItems = (cartItems) => {
+  return cartItems.reduce((count, items) => count + items.quantity, 0);
 };
 
 // delete items from cart
@@ -106,29 +112,20 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
   const { isCartOpen, total, count, cartItems } = state;
 
-  const setItemToCart = (items) =>
-    dispatch({
-      type: CART_ACTION_TYPES.SET_CART_ITEM,
-      payload: items,
-    });
+  const setItemToCart = (items) => {
+    dispatch(createAction(CART_ACTION_TYPES.SET_CART_ITEM, items));
+  };
 
-  const setTotal = (totalValue) =>
-    dispatch({
-      type: CART_ACTION_TYPES.SET_CURRENT_TOTAL,
-      payload: totalValue,
-    });
+  const setTotal = (totalValue) => {
+    dispatch(createAction(CART_ACTION_TYPES.SET_CURRENT_TOTAL, totalValue));
+  };
 
-  const setCount = (countValue) =>
-    dispatch({
-      type: CART_ACTION_TYPES.SET_CURRENT_COUNT,
-      payload: countValue,
-    });
+  const setCount = (countValue) => {
+    dispatch(createAction(CART_ACTION_TYPES.SET_CURRENT_COUNT, countValue));
+  };
 
   const setCartStatus = (cartStatus) => {
-    dispatch({
-      type: CART_ACTION_TYPES.SET_CART_STATUS,
-      payload: cartStatus,
-    });
+    dispatch(createAction(CART_ACTION_TYPES.SET_CART_STATUS, cartStatus));
   };
 
   // creating a function that triggers when the user click the add to cart button
@@ -151,13 +148,7 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   useEffect(() => {
-    // counting the cart items
-    const countCartItems = cartItems.reduce(
-      (count, items) => count + items.quantity,
-      0
-    );
-
-    setCount(countCartItems);
+    setCount(countCartItems(cartItems));
   }, [cartItems]);
 
   const value = {
