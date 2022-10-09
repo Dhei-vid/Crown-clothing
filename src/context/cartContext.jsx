@@ -5,7 +5,7 @@ import { createAction } from "../utils/reducers/reducers.utils";
 const addCartItem = (cartItems, productToAdd) => {
   // find if cartitems contain productToadd
   const foundItems = cartItems.find((item) => item.id === productToAdd.id);
-  // if found increment quantity (what we want is to return a new array)
+  // if found increment quantity (what we want is to return a new array))
   if (foundItems) {
     return cartItems.map((items) =>
       items.id === productToAdd.id
