@@ -14,7 +14,7 @@ const addCartItem = (cartItems, productToAdd) => {
     );
   }
 
-  // return new array with modified cartitems/ new cart items
+  // return new array with modified cartitems/ new cart items.
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
