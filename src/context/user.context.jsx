@@ -13,30 +13,6 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
-export const USER_ACTION_TYPES = {
-  SET_CURRENT_USER: "SET_CURRENT_USER",
-};
-
-const userReducer = (state, action) => {
-  // the state value refers to the previous state value
-  // the action takes two arguments, the type(could be string) and the payload (which is the new state value)
-  const { type, payload } = action;
-
-  switch (type) {
-    case USER_ACTION_TYPES.SET_CURRENT_USER:
-      return {
-        ...state,
-        currentUser: payload,
-      };
-    default:
-      throw new Error("Invalid action type: " + type);
-  }
-};
-
-const INITIAL_STATE = {
-  currentUser: null,
-};
-
 // provider is the actual component
 // when we wrap any component inside the userProvider then that component has access to all the data inside the provider
 export const UserProvider = ({ children }) => {
