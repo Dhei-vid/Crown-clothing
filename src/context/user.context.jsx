@@ -1,6 +1,5 @@
 // To use context we have to first create a react context
 import { createContext, useEffect, useReducer } from "react";
-import { createAction } from "../utils/reducers/reducers.utils";
 
 import {
   onAuthStateChangedListener,
@@ -14,16 +13,11 @@ export const UserContext = createContext({
 });
 
 // provider is the actual component
-// when we wrap any component inside the userProvider then that component has access to all the data inside the provider
+// wrapping any component inside the userProvider makes that component have access to all the data inside the provider
 export const UserProvider = ({ children }) => {
-  // To use the usereducer hook takes two arguments (the userReducer(any reducer function) function and the state value)
+  // usereducer hook takes two arguments (the userReducer(any reducer function) function and the state value)
   // What we get back from the useReducer hook is the state value and a dispatch function (which you pass an action object)
-  const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
-
-  const { currentUser } = state;
-  const setCurrentUser = (user) => {
-    dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
-  };
+  const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
 
   // const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };

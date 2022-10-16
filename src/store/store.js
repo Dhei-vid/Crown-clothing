@@ -1,7 +1,7 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
 
-import { rootReducers } from "./root-reducers";
+import { rootReducers } from "./rootReducer";
 
 /**
  * Root reducer, combination of all reducers
