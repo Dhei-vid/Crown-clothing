@@ -12,8 +12,10 @@ import { rootReducers } from "./rootReducer";
  * Middleware are action libraries that run before the action gets to the reducer
  */
 
-const middleWare = [logger];
+const middleWare = [process.env.NODE_ENV === "development" && logger].filter(
+  Boolean
+);
 
 const composedEnhancers = compose(applyMiddleware(...middleWare));
 
-export const Store = createStore(rootReducers, undefined, composedEnhancers);
+export const store = createStore(rootReducers, undefined, composedEnhancers);

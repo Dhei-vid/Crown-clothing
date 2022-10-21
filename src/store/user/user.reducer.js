@@ -4,7 +4,7 @@ export const INITIAL_STATE = {
   currentUser: null,
 };
 
-export const userReducer = (state = INITIAL_STATE, action) => {
+export const userReducer = (state = INITIAL_STATE, action = {}) => {
   // the state value refers to the previous state value
   // the action takes two arguments, the type(could be string) and the payload (which is the new state value)
   const { type, payload } = action;
