@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -27,7 +26,7 @@ const App = () => {
       dispatch(setCurrentUser(user));
     });
     return unsubscribe;
-  }, []);
+  }, [dispatch]);
 
   return (
     // using Routes makes the browser expect a route inside the component (these components are just function names)
