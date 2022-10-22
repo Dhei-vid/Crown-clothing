@@ -10,7 +10,7 @@ export const CategoriesProvider = ({ children }) => {
   const [categoriesMap, setCategoriesMap] = useState({});
 
   /**
-   * The best way to use useEffect with an async function is to wrap it in an async function
+   * The best way to use useEffect with an async function is to wrap the async function in it
    */
   useEffect(() => {
     const getCategoriesMap = async () => {

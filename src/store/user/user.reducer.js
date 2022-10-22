@@ -9,8 +9,7 @@ export const userReducer = (state = INITIAL_STATE, action = {}) => {
   // the action takes two arguments, the type(could be string) and the payload (which is the new state value)
   const { type, payload } = action;
 
-  // In redux we could get the action for all the reducers, and when we do not respond we need to return the state.
-
+  // In redux we could get the action for all the reducers, and return the state.
   switch (type) {
     case USER_ACTION_TYPES.SET_CURRENT_USER:
       return {
