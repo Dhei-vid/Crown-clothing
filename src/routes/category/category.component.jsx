@@ -9,9 +9,8 @@ import { CategoryContainer } from "./category-styles";
 
 const Category = () => {
   const { category } = useParams();
-  const categoriesMap = useSelector(selectCategoryMap);
-
   console.log("render category component");
+  const categoriesMap = useSelector(selectCategoryMap);
 
   const [products, setProducts] = useState(categoriesMap[category]);
 
