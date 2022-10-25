@@ -1,11 +1,11 @@
 // Nested routing from App.js
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
-import { setCategoriesMap } from "../../store/categories/category.action";
+import { setCategories } from "../../store/categories/category.action";
 
-import { Route, Routes } from "react-router-dom";
 import CategoriesPreview from "../categories-preview/categories-preview.component";
 import Category from "../category/category.component";
 
@@ -14,9 +14,9 @@ const Shop = () => {
 
   useEffect(() => {
     const getCategoriesMap = async () => {
-      const categoryArray = await getCategoriesAndDocuments("categories");
+      const categories = await getCategoriesAndDocuments("categories");
 
-      dispatch(setCategoriesMap(categoryArray));
+      dispatch(setCategories(categories));
     };
 
     getCategoriesMap();
