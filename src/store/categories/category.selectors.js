@@ -22,11 +22,3 @@ export const selectCategoryMap = createSelector(
     }, {});
   }
 );
-
-// export const selectCategoryMap = (state) => {
-//   // return state.category.categories;
-//   console.log("selector fired");
-
-//   const categoriesMap = state.category.
-//   return categoriesMap;
-// };
