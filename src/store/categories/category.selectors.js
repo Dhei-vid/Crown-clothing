@@ -1,11 +1,32 @@
-export const selectCategoryMap = (state) => {
-  // return state.category.categories;
-  console.log("selector fired");
+import { createSelector } from "reselect";
 
-  const categoriesMap = state.category.categories.reduce((acc, category) => {
-    const { title, items } = category;
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoriesMap;
-};
+// To extend into selectors, we have to create input selectors and output selectors.
+
+const selectCategoryReducer = (state) => state.category;
+
+// This is memoized selector
+// the only time this will be rerun is if the input value (category object - line 5) is different
+export const selectCategories = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.categories
+);
+
+export const selectCategoryMap = createSelector(
+  [selectCategories],
+  (categories) => {
+    console.log("memoized", categories);
+    return categories.reduce((acc, category) => {
+      const { title, items } = category;
+      acc[title.toLowerCase()] = items;
+      return acc;
+    }, {});
+  }
+);
+
+// export const selectCategoryMap = (state) => {
+//   // return state.category.categories;
+//   console.log("selector fired");
+
+//   const categoriesMap = state.category.
+//   return categoriesMap;
+// };
