@@ -17,13 +17,19 @@ const loggerMiddleWare = (store) => (next) => (action) => {
   if (!action.type) {
     return next(action);
   }
-  console.log("type", action.type);
-  console.log("payload", action.payload);
+  console.log("type ", action.type);
+  console.log("payload ", action.payload);
+  console.log("current state: ", store.getState());
+
+  next(action);
+  console.log("next state: ", store.getState());
 };
 
-const middleWare = [process.env.NODE_ENV === "development" && logger].filter(
-  Boolean
-);
+const middleWare = [loggerMiddleWare];
+
+// const middleWare = [process.env.NODE_ENV === "development" && logger].filter(
+//   Boolean
+// );
 
 const composedEnhancers = compose(applyMiddleware(...middleWare));
 
