@@ -32,7 +32,7 @@ export const cartReducer = (state = INITIAL_STATE, action = {}) => {
         cartItems: payload,
       };
     default:
-      state;
+      return state;
     // throw new Error("Invalid action type: " + type);
   }
 };
