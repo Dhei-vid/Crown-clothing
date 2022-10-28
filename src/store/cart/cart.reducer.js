@@ -1,3 +1,5 @@
+import CART_ACTION_TYPES from "./cart.types";
+
 export const INITIAL_STATE = {
   isCartOpen: false,
   total: 0,
