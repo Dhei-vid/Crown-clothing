@@ -4,7 +4,7 @@ import { createSelector } from "reselect";
 const selectCategoryReducer = (state) => state.category;
 
 // createSelector create a memoized selector (takes 2 arg - input selector and output selector)
-// the only time this will be rerun is if the input value (category object - line 5) is different
+// the only time this will be rerun is if the input value (category object) is different
 export const selectCategories = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => categoriesSlice.categories
