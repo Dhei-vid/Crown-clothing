@@ -15,3 +15,16 @@ export const selectCartMap = createSelector([selectCart], (cart) =>
     return acc;
   }, {})
 );
+
+// counting the cart items
+const countCartItems = (cartItems) => {
+  return cartItems.reduce((count, items) => count + items.quantity, 0);
+};
+
+// finding the total price for all items in the cart
+const totalPrice = (cartItems) => {
+  return cartItems.reduce(
+    (total, items) => total + items.price * items.quantity,
+    0
+  );
+};

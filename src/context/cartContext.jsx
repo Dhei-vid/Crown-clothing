@@ -145,9 +145,6 @@ export const CartProvider = ({ children }) => {
   // I used the use Effect because I wanted to update the DOM
   useEffect(() => {
     setTotal(totalPrice(cartItems));
-  }, [cartItems]);
-
-  useEffect(() => {
     setCount(countCartItems(cartItems));
   }, [cartItems]);
 
