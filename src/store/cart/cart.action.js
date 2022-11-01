@@ -32,33 +32,23 @@ const removeCartItem = (cartItems, productToRemove) => {
 const deleteCartItems = (cartItems, itemToDelete) =>
   cartItems.filter((item) => item.id !== itemToDelete.id);
 
-// export const setCart = (cart) => {
-//   const cartItem = createAction(CART_ACTION_TYPES.SET_CART_ITEM, cart);
-//   const total = createAction(CART_ACTION_TYPES.SET_CURRENT_TOTAL, cart);
-//   const cartStatus = createAction(CART_ACTION_TYPES.SET_CART_STATUS, cart);
-//   const count = createAction(CART_ACTION_TYPES.SET_CURRENT_COUNT, cart);
-
-//   return { cartItem, total, cartStatus, count };
-// };
-
+// Providers
 export const setIsCartOpen = (boolean) => {
   return createAction(CART_ACTION_TYPES.SET_CART_STATUS, boolean);
 };
 
-// Providers
 export const setItemToCart = (items) => {
   return createAction(CART_ACTION_TYPES.SET_CART_ITEM, items);
 };
 
-//////////////////////////////////
-const addItemToCart = (productToAdd) => {
+export const addItemToCart = (productToAdd) => {
   setItemToCart(addCartItem(cartItems, productToAdd));
 };
 
-const removeItemFromCart = (productToRemove) => {
+export const removeItemFromCart = (productToRemove) => {
   setItemToCart(removeCartItem(cartItems, productToRemove));
 };
 
-const clearCartItem = (itemToDelete) => {
+export const clearCartItem = (itemToDelete) => {
   setItemToCart(deleteCartItems(cartItems, itemToDelete));
 };
