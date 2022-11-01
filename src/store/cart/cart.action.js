@@ -45,28 +45,20 @@ export const setIsCartOpen = (boolean) => {
   return createAction(CART_ACTION_TYPES.SET_CART_STATUS, boolean);
 };
 
-export const setCart = (cartItems) => {
-  const addItemToCart = (productToAdd) => {
-    setItemToCart(addCartItem(cartItems, productToAdd));
-  };
-
-  const removeItemFromCart = (productToRemove) => {
-    setItemToCart(removeCartItem(cartItems, productToRemove));
-  };
-
-  const clearCartItem = (itemToDelete) => {
-    setItemToCart(deleteCartItems(cartItems, itemToDelete));
-  };
+// Providers
+export const setItemToCart = (items) => {
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEM, items);
 };
 
-// const addItemToCart = (productToAdd) => {
-//   setItemToCart(addCartItem(cartItems, productToAdd));
-// };
+//////////////////////////////////
+const addItemToCart = (productToAdd) => {
+  setItemToCart(addCartItem(cartItems, productToAdd));
+};
 
-// const removeItemFromCart = (productToRemove) => {
-//   setItemToCart(removeCartItem(cartItems, productToRemove));
-// };
+const removeItemFromCart = (productToRemove) => {
+  setItemToCart(removeCartItem(cartItems, productToRemove));
+};
 
-// const clearCartItem = (itemToDelete) => {
-//   setItemToCart(deleteCartItems(cartItems, itemToDelete));
-// };
+const clearCartItem = (itemToDelete) => {
+  setItemToCart(deleteCartItems(cartItems, itemToDelete));
+};
