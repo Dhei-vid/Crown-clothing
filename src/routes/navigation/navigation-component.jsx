@@ -22,6 +22,7 @@ import {
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
+  // const { isCartOpen } = useSelector(CartContext);
 
   return (
     <Fragment>
