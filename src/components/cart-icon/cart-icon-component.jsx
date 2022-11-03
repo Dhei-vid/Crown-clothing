@@ -1,6 +1,14 @@
 import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { CartContext } from "../../context/cartContext";
+
+import {
+  selectCartStatus,
+  selectCartCount,
+} from "../../store/cart/cart.selectors";
+import { setIsCartOpen } from "../../store/cart/cart.action";
+
 import {
   CartIconContainer,
   ShoppingIconStyle,
@@ -8,7 +16,11 @@ import {
 } from "./cart-icon-style.jsx";
 
 const CartIcon = () => {
-  const { isCartOpen, setCartStatus, count } = useContext(CartContext);
+  const dispatch = useDispatch();
+  // const { isCartOpen, setCartStatus, count } = useContext(CartContext);
+
+  const count = useSelector(selectCartCount);
+  const isCartOpen = useSelector(selectCartStatus);
 
   const countIcon = () =>
     count.toLocaleString("en-US", {
@@ -17,7 +29,7 @@ const CartIcon = () => {
     });
 
   const toggleIsCartOpen = () => {
-    setCartStatus(!isCartOpen);
+    dispatch(setIsCartOpen(!isCartOpen));
   };
 
   return (
