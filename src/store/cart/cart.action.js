@@ -41,14 +41,14 @@ export const setItemToCart = (items) => {
   return createAction(CART_ACTION_TYPES.SET_CART_ITEM, items);
 };
 
-export const addItemToCart = (productToAdd) => {
+export const addItemToCart = (cartItems, productToAdd) => {
   setItemToCart(addCartItem(cartItems, productToAdd));
 };
 
-export const removeItemFromCart = (productToRemove) => {
+export const removeItemFromCart = (cartItems, productToRemove) => {
   setItemToCart(removeCartItem(cartItems, productToRemove));
 };
 
-export const clearCartItem = (itemToDelete) => {
+export const clearCartItem = (cartItems, itemToDelete) => {
   setItemToCart(deleteCartItems(cartItems, itemToDelete));
 };

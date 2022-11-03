@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useSelector } from "react-redux";
 
 import { CartContext } from "../../context/cartContext";
+// import { selectCartMap } from "../../store/cart/cart.selectors";
 
 import { button_type_classes } from "../button/button-component";
 import {
@@ -15,8 +16,8 @@ import {
 
 const ProductCard = ({ products }) => {
   const { name, price, imageUrl } = products;
-  // const { addItemToCart } = useContext(CartContext);
-  const { addItemToCart } = useSelector(CartContext);
+  const { addItemToCart } = useContext(CartContext);
+  // const { addItemToCart } = useSelector(selectCartMap);
 
   const addItemToCartHandler = () => {
     addItemToCart(products);
