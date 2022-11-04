@@ -1,7 +1,4 @@
-// import { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-// import { CartContext } from "../../context/cartContext";
 
 import {
   selectCartStatus,
@@ -17,7 +14,6 @@ import {
 
 const CartIcon = () => {
   const dispatch = useDispatch();
-  // const { isCartOpen, setCartStatus, count } = useContext(CartContext);
 
   const count = useSelector(selectCartCount);
   const isCartOpen = useSelector(selectCartStatus);

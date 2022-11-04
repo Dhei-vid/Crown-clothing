@@ -5,9 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 
-// import { CategoriesProvider } from "./context/categories.context";
-// import { CartProvider } from "./context/cartContext";
-
 import reportWebVitals from "./reportWebVitals";
 
 import { store } from "./store/store";
