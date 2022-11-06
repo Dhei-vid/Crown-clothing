@@ -33,7 +33,7 @@ const deleteCartItems = (cartItems, itemToDelete) =>
   cartItems.filter((item) => item.id !== itemToDelete.id);
 
 /*********************************************************/
-// Provider function
+// Provider function.
 export const setIsCartOpen = (boolean) => {
   return createAction(CART_ACTION_TYPES.SET_CART_STATUS, boolean);
 };
