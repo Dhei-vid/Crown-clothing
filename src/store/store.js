@@ -2,6 +2,8 @@ import { compose, createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
+// import { loggerMiddleWare } from "../middleware/logger";
+
 import { logger } from "redux-logger";
 
 import { rootReducers } from "./rootReducer";
@@ -15,13 +17,21 @@ import { rootReducers } from "./rootReducer";
  * Currying a function (a function that returns another function)
  */
 
-const middleWare = [logger];
+// const middleWare = [loggerMiddleWare];
 
-// const middleWare = [process.env.NODE_ENV === "development" && logger].filter(
-//   Boolean
-// );
+// checking if the application is in development or production, change the "development" to "production"
+// The middleware will console.log depending on what you pick
+const middleWare = [process.env.NODE_ENV !== "production" && logger].filter(
+  Boolean
+);
 
-const composedEnhancers = compose(applyMiddleware(...middleWare));
+const composeEnhancers =
+  (process.env.NODE_ENV !== "production" &&
+    window &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+const composedEnhancers = composeEnhancers(applyMiddleware(...middleWare));
 
 const persistConfig = {
   key: "root",

@@ -15,13 +15,15 @@ import "./index.scss";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // by wrapping the App in the browser router there are some implementations that we are allowing the brower router to handle for us like keepng track of previous navigations
 root.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
