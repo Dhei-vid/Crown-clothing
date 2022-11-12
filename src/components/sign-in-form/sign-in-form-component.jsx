@@ -72,7 +72,6 @@ const SignInForm = () => {
             value: email,
           }}
         />
-
         <FormInput
           label="Password"
           inputProps={{
@@ -83,7 +82,6 @@ const SignInForm = () => {
             value: password,
           }}
         />
-
         <ButtonContainer>
           <Button type="submit">Sign In</Button>
           <Button
