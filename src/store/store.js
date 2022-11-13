@@ -1,6 +1,7 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import thunk from "redux-thunk";
 
 // import { loggerMiddleWare } from "../middleware/logger";
 
@@ -21,9 +22,10 @@ import { rootReducers } from "./rootReducer";
 
 // checking if the application is in development or production, change the "development" to "production"
 // The middleware will console.log depending on what you pick
-const middleWare = [process.env.NODE_ENV !== "production" && logger].filter(
-  Boolean
-);
+const middleWare = [
+  process.env.NODE_ENV !== "production" && logger,
+  thunk,
+].filter(Boolean);
 
 const composeEnhancers =
   (process.env.NODE_ENV !== "production" &&
