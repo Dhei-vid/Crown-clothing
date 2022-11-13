@@ -17,7 +17,6 @@ export const categoryReducer = (state = INITIAL_STATE, action = {}) => {
       return {
         ...state,
         isLoading: true,
-        categories: payload,
       };
     case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START:
       return {
@@ -25,7 +24,7 @@ export const categoryReducer = (state = INITIAL_STATE, action = {}) => {
         categories: payload,
         isLoading: false,
       };
-    case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_FAIL:
+    case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_FAILED:
       return {
         ...state,
         error: payload,
