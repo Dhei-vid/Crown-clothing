@@ -12,6 +12,7 @@ export const selectCategories = createSelector(
 
 export const selectCategoryMap = createSelector(
   [selectCategories],
+
   (categories) =>
     categories.reduce((acc, category) => {
       const { title, items } = category;

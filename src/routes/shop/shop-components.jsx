@@ -12,7 +12,7 @@ const Shop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCategoryAsync(categories));
+    dispatch(fetchCategoryAsync());
   }, []);
 
   return (

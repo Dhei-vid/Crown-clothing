@@ -32,6 +32,6 @@ export const fetchCategoryAsync = () => async (dispatch) => {
 
     dispatch(fetchCategorySuccess(categories));
   } catch (error) {
-    dispatch(fetchCategoryFailed(error.message));
+    dispatch(fetchCategoryFailed(error));
   }
 };

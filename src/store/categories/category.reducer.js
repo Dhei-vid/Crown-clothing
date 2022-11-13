@@ -9,16 +9,13 @@ export const INITIAL_STATE = {
 export const categoryReducer = (state = INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
-  console.log("Payload", payload);
-  console.log("type", type);
-
   switch (type) {
     case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START:
       return {
         ...state,
         isLoading: true,
       };
-    case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START:
+    case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_SUCCESS:
       return {
         ...state,
         categories: payload,
