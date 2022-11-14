@@ -30,7 +30,6 @@ export const fetchCategoryAsync = () => async (dispatch) => {
 
   try {
     const categories = await getCategoriesAndDocuments("categories");
-    console.log(categories);
 
     dispatch(fetchCategorySuccess(categories));
   } catch (error) {
