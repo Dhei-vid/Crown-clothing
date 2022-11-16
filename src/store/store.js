@@ -1,7 +1,11 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
+
+import createSagaMiddleware from "redux-saga";
+
+import { rootSaga } from "./rootSaga";
 
 // import { loggerMiddleWare } from "../middleware/logger";
 
@@ -22,9 +26,17 @@ import { rootReducers } from "./rootReducer";
 
 // checking if the application is in development or production, change the "development" to "production"
 // The middleware will console.log depending on what you pick
+
+// const middleWare = [
+//   process.env.NODE_ENV !== "production" && logger,
+//   thunk,
+// ].filter(Boolean); (for the thunk middleware)
+
+const sagaMiddleWare = createSagaMiddleware();
+
 const middleWare = [
   process.env.NODE_ENV !== "production" && logger,
-  thunk,
+  sagaMiddleWare,
 ].filter(Boolean);
 
 const composeEnhancers =
@@ -47,5 +59,7 @@ export const store = createStore(
   undefined,
   composedEnhancers
 );
+
+sagaMiddleWare.run(rootSaga);
 
 export const persistor = persistStore(store);
