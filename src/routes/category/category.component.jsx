@@ -33,14 +33,12 @@ const Category = () => {
         <Spanner />
       ) : (
         <CategoryContainer>
-          {
-            // this is a safe guard built so the code does not run unless products evaluates to true
-            // Good practice for when you have data that runs asynchronously
-            products &&
-              products.map((prod) => (
-                <ProductCard key={prod.id} products={prod} />
-              ))
-          }
+          {// this is a safe guard built so the code does not run unless products evaluates to true
+          // Good practice for when you have data that runs asynchronously
+          products &&
+            products.map((prod) => (
+              <ProductCard key={prod.id} products={prod} />
+            ))}
         </CategoryContainer>
       )}
     </>
