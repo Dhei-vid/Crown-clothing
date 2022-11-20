@@ -1,7 +1,7 @@
 // I want to obtain data from the user document and store it inside the context.
 // To do that I need a useContext hook and then bring in the context created
 
-import { useState } from "react";
+import React, { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button, { button_type_classes } from "../button/button-component";
 

@@ -1,3 +1,4 @@
+import React from "react";
 import DirectoryItem from "../directory-item/directory-item-component";
 import { CategoriesContainer } from "./category-dir.styles";
 
