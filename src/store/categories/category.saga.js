@@ -11,15 +11,15 @@ export function* fetchCategoryAsync() {
     const categories = yield call(getCategoriesAndDocuments, "categories");
 
     // for dispatch, we use put
-    return yield put(fetchCategorySuccess(categories));
+    yield put(fetchCategorySuccess(categories));
   } catch (error) {
-    return yield put(fetchCategoryFailed(error));
+    yield put(fetchCategoryFailed(error));
   }
 }
 
 export function* onFetchCategories() {
   // from the same action, it executes the latest one
-  return yield takeLatest(
+  yield takeLatest(
     CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START,
     fetchCategoryAsync
   );
@@ -27,5 +27,5 @@ export function* onFetchCategories() {
 
 export function* CategoriesSaga() {
   // runs everything on its line till finished
-  return yield all([call(onFetchCategories)]);
+  yield all([call(onFetchCategories)]);
 }
