@@ -164,3 +164,16 @@ export const onAuthStateChangedListener = (callback) =>
   // the onAuthStateChanged is an open state listener (whenever the auth changes it runs)
   // the issue is that we need to tell it to unmount when the userContext unmounts (memory leak)
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
