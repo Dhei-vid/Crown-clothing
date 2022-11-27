@@ -10,17 +10,20 @@ import CheckOut from "./routes/checkout/checkout-component.jsx";
 
 import { setCurrentUser } from "./store/user/user.action";
 
+import { getCurrentUser } from "./utils/firebase/firebase.utils";
+
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
-  getCurrentUser,
 } from "./utils/firebase/firebase.utils";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCurrentUser().then((user) => console.log(user));
+    getCurrentUser().then((userAuth) => {
+      console.log(userAuth);
+    });
   }, [dispatch]);
 
   return (
