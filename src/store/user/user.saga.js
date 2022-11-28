@@ -4,11 +4,17 @@ import USER_ACTION_TYPES from "./user.types";
 import collection from "firebase/firestores";
 
 import { userSignInSuccess, userSignInFailed } from "./user.action";
-import { getCurrentUser } from "../../utils/firebase/firebase.utils";
+import {
+  getCurrentUser,
+  createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase.utils";
 
-export function* onCreateUserDocumentFromAuth() {
-  const collectionRef = collection(db, "categories");
-  const q = query(collectionRef);
+export function* getSnapShotFromUser() {
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  const userSnapShot = yield getDoc(userDocRef);
+
+  console.log(userSnapShot);
 }
 
 export function* isUserAuthenticated() {
@@ -16,6 +22,8 @@ export function* isUserAuthenticated() {
     const userAuth = yield call(getCurrentUser);
 
     if (!userAuth) return;
+
+    yield onCreateUserDocumentFromAuth();
   } catch (error) {}
 }
 

@@ -136,7 +136,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return userDocRef;
+  return userSnapShot;
 };
 
 // For the sign in Component to create a new user
