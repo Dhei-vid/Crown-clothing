@@ -15,6 +15,7 @@ export function* getSnapShotFromUser() {
   const userSnapShot = yield getDoc(userDocRef);
 
   console.log(userSnapShot);
+  return userSnapShot
 }
 
 export function* isUserAuthenticated() {
