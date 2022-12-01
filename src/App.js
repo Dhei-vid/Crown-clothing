@@ -8,23 +8,18 @@ import Authentication from "./routes/Authentication/authentication-component.jsx
 import Shop from "./routes/shop/shop-components.jsx";
 import CheckOut from "./routes/checkout/checkout-component.jsx";
 
-import { setCurrentUser } from "./store/user/user.action";
+// import { setCurrentUser } from "./store/user/user.action";
 
-import { getCurrentUser } from "./utils/firebase/firebase.utils";
+// import { checkUserSession } from "./utils/firebase/firebase.utils";
 
-import {
-  onAuthStateChangedListener,
-  createUserDocumentFromAuth,
-} from "./utils/firebase/firebase.utils";
+import { checkUserSession } from "./store/user/user.saga.js";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCurrentUser().then((userAuth) => {
-      console.log(userAuth);
-    });
-  }, [dispatch]);
+    dispatch(checkUserSession());
+  }, []);
 
   return (
     // using Routes makes the browser expect a route inside the component (these components are just function names)

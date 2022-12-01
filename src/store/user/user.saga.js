@@ -4,18 +4,26 @@ import USER_ACTION_TYPES from "./user.types";
 import collection from "firebase/firestores";
 
 import { userSignInSuccess, userSignInFailed } from "./user.action";
+
 import {
   getCurrentUser,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
-export function* getSnapShotFromUser() {
-  const userDocRef = doc(db, "users", userAuth.uid);
+export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
+  try {
+    // to call a function, use the call generator
+    const userSnapShot = yield call(
+      createUserDocumentFromAuth,
+      userAuth,
+      additionalDetails
+    );
 
-  const userSnapShot = yield getDoc(userDocRef);
-
-  console.log(userSnapShot);
-  return userSnapShot
+    console.log(userSnapShot);
+    console.log(userSnapShot.data());
+  } catch (error) {
+    yield put(userSignInFailed(error));
+  }
 }
 
 export function* isUserAuthenticated() {
@@ -23,15 +31,16 @@ export function* isUserAuthenticated() {
     const userAuth = yield call(getCurrentUser);
 
     if (!userAuth) return;
-
-    yield onCreateUserDocumentFromAuth();
   } catch (error) {}
 }
 
 export function* checkUserSession() {
-  yield takeLatest(USER_ACTION_TYPES.CHECK_USER_SESSION_START);
+  yield takeLatest(
+    USER_ACTION_TYPES.CHECK_USER_SESSION_START,
+    isUserAuthenticated
+  );
 }
 
 export function* userSaga() {
-  yield all([]);
+  yield all([call(checkUserSession)]);
 }
