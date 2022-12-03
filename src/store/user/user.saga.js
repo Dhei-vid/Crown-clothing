@@ -19,7 +19,6 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
       additionalDetails
     );
 
-    console.log("UserSnapShot");
     console.log(userSnapShot);
     console.log(userSnapShot.data());
   } catch (error) {
