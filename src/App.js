@@ -10,9 +10,7 @@ import CheckOut from "./routes/checkout/checkout-component.jsx";
 
 // import { setCurrentUser } from "./store/user/user.action";
 
-// import { checkUserSession } from "./utils/firebase/firebase.utils";
-
-import { checkUserSession } from "./store/user/user.saga.js";
+import { checkUserSession } from "./store/user/user.action.js";
 
 const App = () => {
   const dispatch = useDispatch();

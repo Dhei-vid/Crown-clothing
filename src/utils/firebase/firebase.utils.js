@@ -30,7 +30,7 @@ import {
   writeBatch,
   query,
   getDocs,
-} from "firebase/firestore";
+} from "firebase/firestore/lite";
 
 // this config function enables us to attach this firebase instance to the instance we have created online
 // Your web app's Firebase configuration

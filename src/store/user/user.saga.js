@@ -1,7 +1,6 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 
 import USER_ACTION_TYPES from "./user.types";
-import collection from "firebase/firestores";
 
 import { userSignInSuccess, userSignInFailed } from "./user.action";
 
@@ -31,7 +30,11 @@ export function* isUserAuthenticated() {
     const userAuth = yield call(getCurrentUser);
 
     if (!userAuth) return;
-  } catch (error) {}
+
+    yield call(getSnapShotFromUserAuth, userAuth);
+  } catch (error) {
+    yield put(userSignInFailed(error));
+  }
 }
 
 export function* checkUserSession() {
