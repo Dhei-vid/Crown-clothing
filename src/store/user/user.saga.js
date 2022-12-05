@@ -18,6 +18,10 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
       additionalDetails
     );
 
+    yield put(
+      userSignInSuccess({ id: userSnapShot.id, ...userSnapShot.data() })
+    );
+
     console.log(userSnapShot);
     console.log(userSnapShot.data());
   } catch (error) {
@@ -47,3 +51,6 @@ export function* checkUserSession() {
 export function* userSaga() {
   yield all([call(checkUserSession)]);
 }
+
+// TASK
+// Try to migrate sign in and sign up (google and email password) to flow through the already set up document authen. and snapShot
