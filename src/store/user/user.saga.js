@@ -7,6 +7,7 @@ import { userSignInSuccess, userSignInFailed } from "./user.action";
 import {
   getCurrentUser,
   createUserDocumentFromAuth,
+  signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
 
 export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
@@ -24,6 +25,17 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
 
     console.log("userSnapShot", userSnapShot);
     console.log(userSnapShot.data());
+  } catch (error) {
+    yield put(userSignInFailed(error));
+  }
+}
+
+export function* signInGoogle() {
+  try {
+    // this returns an authentication document, which we extract the user doc
+    const { user } = yield call(signInWithGooglePopup);
+
+    yield call(getSnapShotFromUserAuth, user);
   } catch (error) {
     yield put(userSignInFailed(error));
   }
@@ -49,11 +61,11 @@ export function* oncheckUserSession() {
 }
 
 export function* onSignInWithGoogle() {
-  yield;
+  yield takeLatest(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START);
 }
 
 export function* userSaga() {
-  yield all([call(oncheckUserSession)]);
+  yield all([call(oncheckUserSession), call(onSignInWithGoogle)]);
 }
 
 // TASK
