@@ -22,7 +22,7 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
       userSignInSuccess({ id: userSnapShot.id, ...userSnapShot.data() })
     );
 
-    console.log(userSnapShot);
+    console.log("userSnapShot", userSnapShot);
     console.log(userSnapShot.data());
   } catch (error) {
     yield put(userSignInFailed(error));
@@ -41,15 +41,19 @@ export function* isUserAuthenticated() {
   }
 }
 
-export function* checkUserSession() {
+export function* oncheckUserSession() {
   yield takeLatest(
     USER_ACTION_TYPES.CHECK_USER_SESSION_START,
     isUserAuthenticated
   );
 }
 
+export function* onSignInWithGoogle() {
+  yield;
+}
+
 export function* userSaga() {
-  yield all([call(checkUserSession)]);
+  yield all([call(oncheckUserSession)]);
 }
 
 // TASK
