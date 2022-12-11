@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button, { button_type_classes } from "../button/button-component";
 
-import { onGoogleSignIn } from "../../store/user/user.saga";
+// import { onGoogleSignIn } from "../../store/user/user.saga";
+import { GoogleSignInStart } from "../../store/user/user.action";
 
 import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
@@ -32,7 +33,7 @@ const SignInForm = () => {
     setFormFields(defaultFormField);
   };
 
-  const signInWithGoogle = async () => dispatch(onGoogleSignIn());
+  const signInWithGoogle = async () => dispatch(GoogleSignInStart());
 
   // authenticate user
   const onHandleSubmit = async (event) => {
