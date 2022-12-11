@@ -30,7 +30,7 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
   }
 }
 
-export function* signInGoogle() {
+export function* onGoogleSignIn() {
   try {
     // this returns an authentication document, which we extract the user doc
     const { user } = yield call(signInWithGooglePopup);
@@ -61,7 +61,7 @@ export function* oncheckUserSession() {
 }
 
 export function* onSignInWithGoogle() {
-  yield takeLatest(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START);
+  yield takeLatest(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START, onGoogleSignIn);
 }
 
 export function* userSaga() {

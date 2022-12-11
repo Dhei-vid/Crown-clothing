@@ -2,13 +2,13 @@
 // To do that I need a useContext hook and then bring in the context created
 
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button, { button_type_classes } from "../button/button-component";
 
-import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-} from "../../utils/firebase/firebase.utils";
+import { onGoogleSignIn } from "../../store/user/user.saga";
+
+import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 import {
   SignUpContainer,
@@ -24,6 +24,7 @@ const defaultFormField = {
 
 // create the markup...
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormField);
   const { email, password } = formFields;
 
@@ -31,9 +32,7 @@ const SignInForm = () => {
     setFormFields(defaultFormField);
   };
 
-  const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
-  };
+  const signInWithGoogle = async () => dispatch(onGoogleSignIn());
 
   // authenticate user
   const onHandleSubmit = async (event) => {
