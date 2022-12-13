@@ -69,4 +69,4 @@ export function* userSaga() {
 }
 
 // TASK
-// Try to migrate sign in and sign up (google and email password) to flow through the already set up document authen. and snapShot
+// Try to migrate sign in and sign up (email password) to flow through the already set up document authen. and snapShot
