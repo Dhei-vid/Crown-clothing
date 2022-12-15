@@ -30,6 +30,11 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
   }
 }
 
+export function* withEmailAndPassword() {
+  try {
+  } catch (error) {}
+}
+
 export function* onGoogleSignIn() {
   try {
     // this returns an authentication document, which we extract the user doc
