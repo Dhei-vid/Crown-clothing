@@ -32,6 +32,7 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
 
 export function* withEmailAndPassword() {
   try {
+    yield;
   } catch (error) {}
 }
 
