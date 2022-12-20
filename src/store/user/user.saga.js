@@ -8,6 +8,7 @@ import {
   getCurrentUser,
   createUserDocumentFromAuth,
   signInWithGooglePopup,
+  signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
 export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
@@ -32,8 +33,12 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
 
 export function* withEmailAndPassword() {
   try {
-    yield call();
-  } catch (error) {}
+    const { user } = yield call(signInAuthUserWithEmailAndPassword);
+
+    yield call(getSnapShotFromUserAuth, user);
+  } catch (error) {
+    yield put(userSignInFailed(error));
+  }
 }
 
 export function* onGoogleSignIn() {
