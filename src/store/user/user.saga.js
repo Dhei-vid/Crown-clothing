@@ -71,6 +71,10 @@ export function* oncheckUserSession() {
   );
 }
 
+export function* onSignInWithEmailAndPassword(){
+  yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, withEmailAndPassword)
+}
+
 export function* onSignInWithGoogle() {
   yield takeLatest(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START, onGoogleSignIn);
 }
