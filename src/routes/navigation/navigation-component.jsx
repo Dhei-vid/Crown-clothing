@@ -10,6 +10,7 @@ import { selectCartStatus } from "../../store/cart/cart.selectors";
 import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
+
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import {
@@ -21,8 +22,9 @@ import {
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-
   const isCartOpen = useSelector(selectCartStatus);
+
+  // const signOutUser = () => dispatch(signOutStart());
 
   return (
     <Fragment>
@@ -34,7 +36,9 @@ const Navigation = () => {
           <NavLink to="/shop">SHOP</NavLink>
           <NavLink to="/auth">CONTACT</NavLink>
 
-          {currentUser ? (
+          {
+          
+          currentUser ? (
             <NavLink as="span" onClick={signOutUser}>
               SIGN OUT
             </NavLink>

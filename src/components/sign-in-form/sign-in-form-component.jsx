@@ -6,10 +6,11 @@ import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button, { button_type_classes } from "../button/button-component";
 
-// import { onGoogleSignIn } from "../../store/user/user.saga";
-import { GoogleSignInStart } from "../../store/user/user.action";
+import { GoogleSignInStart, EmailSignInStart } from "../../store/user/user.action";
 
-import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+// import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+
+// pw: WzSi7GMM8@b
 
 import {
   SignUpContainer,
@@ -40,7 +41,8 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      // await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(EmailSignInStart(email, password));
 
       resetFormFields();
     } catch (e) {

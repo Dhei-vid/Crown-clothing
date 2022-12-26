@@ -31,9 +31,10 @@ export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
   }
 }
 
-export function* withEmailAndPassword() {
+export function* withEmailAndPasswordSignIn( {payload: {email, password}} ) {
   try {
-    const { user } = yield call(signInAuthUserWithEmailAndPassword);
+    
+    const { user } = yield call(signInAuthUserWithEmailAndPassword,email, password);
 
     yield call(getSnapShotFromUserAuth, user);
   } catch (error) {
@@ -72,7 +73,7 @@ export function* oncheckUserSession() {
 }
 
 export function* onSignInWithEmailAndPassword(){
-  yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, withEmailAndPassword)
+  yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, withEmailAndPasswordSignIn)
 }
 
 export function* onSignInWithGoogle() {
@@ -80,8 +81,7 @@ export function* onSignInWithGoogle() {
 }
 
 export function* userSaga() {
-  yield all([call(oncheckUserSession), call(onSignInWithGoogle)]);
+  yield all([call(oncheckUserSession), call(onSignInWithGoogle), call(onSignInWithEmailAndPassword)]);
 }
 
-// TASK
-// Try to migrate sign in and sign up (email and password) to flow through the already set up document authen. and snapShot
+
