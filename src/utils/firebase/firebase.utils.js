@@ -134,7 +134,6 @@ export const createUserDocumentFromAuth = async (
       console.error("error from creating user", error.message);
     }
   }
-
   return userSnapShot;
 };
 
