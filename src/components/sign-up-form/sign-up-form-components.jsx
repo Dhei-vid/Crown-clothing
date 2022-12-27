@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import Button, { button_type_classes } from "../button/button-component";
 
 import { SignUpContainer, Header } from "./sign-up-form.styles.jsx";
+import { EmailSignInStart } from "../../store/user/user.action";
 
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils";
+// import {
+//   createAuthUserWithEmailAndPassword,
+//   createUserDocumentFromAuth,
+// } from "../../utils/firebase/firebase.utils";
+
 
 const defaultFormField = {
   displayName: "",
@@ -18,6 +21,7 @@ const defaultFormField = {
 };
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormField);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -35,18 +39,23 @@ const SignUpForm = () => {
 
     try {
       // check if user has been authenticated with email and password
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      // const { user } = await createAuthUserWithEmailAndPassword(
+      //   email,
+      //   password
+      // );
+  
 
-      // create user documents
-      const userDoc = await createUserDocumentFromAuth(user, {
-        displayName,
-      });
+      // // create user documents
+      // const userDoc = await createUserDocumentFromAuth(user, {
+      //   displayName,
+      // });
+
+      dispatch(EmailSignInStart());
+
+      
 
       resetFormFields();
-      console.log(userDoc);
+      // console.log(userDoc);
     } catch (error) {
       console.log(error.message);
     }

@@ -10,6 +10,7 @@ export function* fetchCategoryAsync() {
   try {
     const categories = yield call(getCategoriesAndDocuments, "categories");
 
+    // We do not call dispatch inside a generator
     // for dispatch, we use put
     yield put(fetchCategorySuccess(categories));
   } catch (error) {
@@ -18,7 +19,8 @@ export function* fetchCategoryAsync() {
 }
 
 export function* onFetchCategories() {
-  // from the same action, it executes the latest one
+  // for a number of the same action, it executes the latest one
+  // The first argument is what it responds to and the next is what we want to happen
   yield takeLatest(
     CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START,
     fetchCategoryAsync

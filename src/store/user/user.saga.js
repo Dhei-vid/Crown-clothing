@@ -13,7 +13,7 @@ import {
 
 export function* getSnapShotFromUserAuth(userAuth, additionalDetails) {
   try {
-    // to call a function, use the call generator
+    // to call a function, use the call generator, the rest are parameters
     const userSnapShot = yield call(
       createUserDocumentFromAuth,
       userAuth,

@@ -8,8 +8,6 @@ import Button, { button_type_classes } from "../button/button-component";
 
 import { GoogleSignInStart, EmailSignInStart } from "../../store/user/user.action";
 
-// import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
-
 // pw: WzSi7GMM8@b
 
 import {
@@ -41,7 +39,6 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      // await signInAuthUserWithEmailAndPassword(email, password);
       dispatch(EmailSignInStart(email, password));
 
       resetFormFields();

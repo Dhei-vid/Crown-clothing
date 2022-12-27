@@ -8,8 +8,6 @@ import Authentication from "./routes/Authentication/authentication-component.jsx
 import Shop from "./routes/shop/shop-components.jsx";
 import CheckOut from "./routes/checkout/checkout-component.jsx";
 
-// import { setCurrentUser } from "./store/user/user.action";
-
 import { checkUserSession } from "./store/user/user.action.js";
 
 const App = () => {
