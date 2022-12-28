@@ -13,10 +13,10 @@ export const userReducer = (state = INITIAL_STATE, action = {}) => {
 
   // In redux we could get the action for all the reducers, and return the state.
   switch (type) {
-    case USER_ACTION_TYPES.SET_CURRENT_USER:
+    case USER_ACTION_TYPES.SIGN_OUT_SUCCESS:
       return {
         ...state,
-        currentUser: payload
+        currentUser: null
       }
     case USER_ACTION_TYPES.SIGN_IN_SUCCESS:
       return {
