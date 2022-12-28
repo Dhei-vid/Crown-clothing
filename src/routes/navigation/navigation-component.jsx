@@ -8,12 +8,9 @@ import CartDropdown from '../../components/cart-dropdown/cart-dropdown-component
 
 import { selectCartStatus } from '../../store/cart/cart.selectors'
 import { selectCurrentUser } from '../../store/user/user.selector'
-
-import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
-
 import { userSignOutStart } from '../../store/user/user.action'
 
-// import { signOutUser } from '../../utils/firebase/firebase.utils'
+import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
 
 import {
   NavigationContainer,
@@ -23,9 +20,9 @@ import {
 } from './navigation-styles'
 
 const Navigation = () => {
+  const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
   const isCartOpen = useSelector(selectCartStatus)
-  const dispatch = useDispatch()
 
   console.log(currentUser)
 
