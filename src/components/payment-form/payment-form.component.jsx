@@ -14,7 +14,7 @@ const PaymentForm = () => {
 
     if (!stripe || !elements) return
 
-    // we need to make a fetch request to the backend to create a payment intent
+    // we need to make a fetch request to the backend to create a payment intent (something stripe uses to know that a payment is coming)
   }
 
   return (
