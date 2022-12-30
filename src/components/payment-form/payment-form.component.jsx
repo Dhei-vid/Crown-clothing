@@ -6,20 +6,29 @@ import { PaymentFormContainer, FormContainer } from './payment-form.styles'
 const PaymentForm = () => {
   // used to make request in strip format
   const stripe = useStripe()
-
   const elements = useElements()
 
   const paymentHandler = async e => {
     e.preventDefault()
 
-    if (!stripe || !elements) return
+    if (!stripe || !elements) {
+      return
+    }
 
-    // we need to make a fetch request to the backend to create a payment intent (something stripe uses to know that a payment is coming)
+    const response = await fetch('/.netlify/functions/create-payment-intent', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ amount: 10000 })
+    }).then(res => res.json())
+
+    console.log(response)
   }
 
   return (
     <PaymentFormContainer>
-      <FormContainer>
+      <FormContainer onSubmit={paymentHandler}>
         <h2> Credit Card Payment</h2>
         <CardElement />
         <Button button_type={button_type_classes.inverted}> Pay Now! </Button>
