@@ -25,5 +25,3 @@ exports.handler = async event => {
     }
   }
 }
-
-// To test this we need Netlify CLI (creates a testing environment)
