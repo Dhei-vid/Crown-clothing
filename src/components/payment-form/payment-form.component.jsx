@@ -5,8 +5,12 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { selectCartTotal } from '../../store/cart/cart.selectors'
 import { selectCurrentUser } from '../../store/user/user.selector'
 
-import Button, { button_type_classes } from '../button/button-component'
-import { PaymentFormContainer, FormContainer } from './payment-form.styles'
+import { button_type_classes } from '../button/button-component'
+import {
+  PaymentFormContainer,
+  FormContainer,
+  PaymentButton
+} from './payment-form.styles'
 
 const PaymentForm = () => {
   // used to make request in strip format
@@ -64,13 +68,12 @@ const PaymentForm = () => {
       <FormContainer onSubmit={paymentHandler}>
         <h2> Credit Card Payment</h2>
         <CardElement />
-        <Button
-          disabled={isProcessingPayment}
+        <PaymentButton
+          isLoading={isProcessingPayment}
           button_type={button_type_classes.inverted}
         >
-          {' '}
-          Pay Now!{' '}
-        </Button>
+          Pay Now!
+        </PaymentButton>
       </FormContainer>
     </PaymentFormContainer>
   )
