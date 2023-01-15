@@ -30,7 +30,7 @@ const PaymentForm = () => {
     setIsProcessingPayment(true)
 
     const response = await fetch('/.netlify/functions/create-payment-intent', {
-      method: 'POST',
+      method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
