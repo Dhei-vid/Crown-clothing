@@ -1,5 +1,5 @@
 [build]
-  command = "# no build command"
+  command = "npm build" = "build"
   functions = "netlify/functions"
   publish = "."
 
@@ -7,3 +7,6 @@
   from = '/api/*'
   to = '/.netlify/functions/:splat'
   status = 200
+
+
+  
