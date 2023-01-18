@@ -63,6 +63,10 @@ const PaymentForm = () => {
     }
   }
 
+  const paymentElementOptions = {
+    layout: 'tabs'
+  }
+
   return (
     <PaymentFormContainer>
       <FormContainer onSubmit={paymentHandler}>
