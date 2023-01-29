@@ -1,14 +1,26 @@
 // ENUM WORKS IN TYPESCRIPT FOR FIXED STRINGS
-enum CATEGORY_ACTION_TYPES {
+export enum CATEGORY_ACTION_TYPES {
   FETCH_CURRENT_CATEGORY_START = "category/SET_CURRENT_CATEGORY_START",
   FETCH_CURRENT_CATEGORY_SUCCESS = "category/SET_CURRENT_CATEGORY_SUCCESS",
   FETCH_CURRENT_CATEGORY_FAILED = "category/SET_CURRENT_CATEGORY_FAIL",
 }
 
+export type Category = {
+  title: string;
+  imageUrl: string;
+  items: CategoryItem[];
+};
+
+export type CategoryItem = {
+  id: number;
+  imageUrl: string;
+  name: string;
+  price: number;
+};
+
+// for REACT
 // const CATEGORY_ACTION_TYPES = {
 //   FETCH_CURRENT_CATEGORY_START: "category/SET_CURRENT_CATEGORY_START",
 //   FETCH_CURRENT_CATEGORY_SUCCESS: "category/SET_CURRENT_CATEGORY_SUCCESS",
 //   FETCH_CURRENT_CATEGORY_FAILED: "category/SET_CURRENT_CATEGORY_FAIL",
 // };
-
-export default CATEGORY_ACTION_TYPES;
