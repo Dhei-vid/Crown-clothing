@@ -1,25 +1,24 @@
-import { CATEGORY_ACTION_TYPES } from "./category.types";
+import { CATEGORY_ACTION_TYPES, Category } from "./category.types";
 import { categoryAction } from "./category.action";
 
-type StateTypes = {
-  categories: [];
-  isLoading: boolean;
-  error: string;
+export type CategoryState = {
+  readonly categories: Category[];
+  readonly isLoading: boolean;
+  readonly error: Error | null;
 };
 
-export const INITIAL_STATE: StateTypes = {
+export const INITIAL_STATE: CategoryState = {
   categories: [],
   isLoading: false,
   error: null,
 };
 
+// we used a discrimatory union to state what the action type must be
 export const categoryReducer = (
   state = INITIAL_STATE,
   action = {} as categoryAction
-): StateTypes => {
-  const { type, payload } = action;
-
-  switch (type) {
+) => {
+  switch (action.type) {
     case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START:
       return {
         ...state,
@@ -29,13 +28,13 @@ export const categoryReducer = (
       return {
         ...state,
         isLoading: false,
-        categories: payload,
+        categories: action.payload,
       };
     case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_FAILED:
       return {
         ...state,
         isLoading: false,
-        error: payload,
+        error: action.payload,
       };
     default:
       return state;
