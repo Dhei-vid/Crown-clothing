@@ -1,5 +1,3 @@
-// Come back later
-
 import styled from "styled-components";
 
 export const BackgroundImage = styled.div`

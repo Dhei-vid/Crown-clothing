@@ -1,61 +1,59 @@
 // I want to obtain data from the user document and store it inside the context.
 // To do that I need a useContext hook and then bring in the context created
-
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import FormInput from '../form-input/form-input.component'
-import Button, { button_type_classes } from '../button/button-component'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import FormInput from "../form-input/form-input.component";
+import Button, { button_type_classes } from "../button/button-component";
 
 import {
   GoogleSignInStart,
-  EmailSignInStart
-} from '../../store/user/user.action'
-
-// pw: WzSi7GMM8@b
+  EmailSignInStart,
+} from "../../store/user/user.action";
 
 import {
   SignUpContainer,
   Header,
-  ButtonContainer
-} from './sign-in-form-styles.jsx'
+  ButtonContainer,
+} from "./sign-in-form-styles.jsx";
 
 // default fields
 const defaultFormField = {
-  email: '',
-  password: ''
-}
+  email: "",
+  password: "",
+};
 
 // create the markup...
 const SignInForm = () => {
-  const dispatch = useDispatch()
-  const [formFields, setFormFields] = useState(defaultFormField)
-  const { email, password } = formFields
+  const dispatch = useDispatch();
+  const [formFields, setFormFields] = useState(defaultFormField);
+  const { email, password } = formFields;
 
   const resetFormFields = () => {
-    setFormFields(defaultFormField)
-  }
+    setFormFields(defaultFormField);
+  };
 
-  const signInWithGoogle = async () => dispatch(GoogleSignInStart())
+  const signInWithGoogle = async () => dispatch(GoogleSignInStart());
 
   // authenticate user
-  const onHandleSubmit = async event => {
-    event.preventDefault()
+  const onHandleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
-      dispatch(EmailSignInStart(email, password))
-      resetFormFields()
+      dispatch(EmailSignInStart(email, password));
+      resetFormFields();
     } catch (e) {
-      if (e.code === 'auth/wrong-password') {
-        alert('Incorrect password')
-      } else if (e.code === 'auth/user-not-found') alert('Email does not exist')
+      if (e.code === "auth/wrong-password") {
+        alert("Incorrect password");
+      } else if (e.code === "auth/user-not-found")
+        alert("Email does not exist");
     }
-  }
+  };
 
-  const onChangeHandler = event => {
-    const { name, value } = event.target
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
 
-    setFormFields({ ...formFields, [name]: value })
-  }
+    setFormFields({ ...formFields, [name]: value });
+  };
 
   return (
     <SignUpContainer>
@@ -63,29 +61,29 @@ const SignInForm = () => {
       <h1>Sign In</h1>
       <form onSubmit={onHandleSubmit}>
         <FormInput
-          label='email'
+          label="email"
           inputProps={{
-            type: 'email',
+            type: "email",
             required: true,
             onChange: onChangeHandler,
-            name: 'email',
-            value: email
+            name: "email",
+            value: email,
           }}
         />
         <FormInput
-          label='Password'
+          label="Password"
           inputProps={{
-            type: 'password',
+            type: "password",
             required: true,
             onChange: onChangeHandler,
-            name: 'password',
-            value: password
+            name: "password",
+            value: password,
           }}
         />
         <ButtonContainer>
-          <Button type='submit'>Sign In</Button>
+          <Button type="submit">Sign In</Button>
           <Button
-            type='button'
+            type="button"
             button_type={button_type_classes.google}
             onClick={signInWithGoogle}
           >
@@ -94,7 +92,7 @@ const SignInForm = () => {
         </ButtonContainer>
       </form>
     </SignUpContainer>
-  )
-}
+  );
+};
 
-export default SignInForm
+export default SignInForm;
