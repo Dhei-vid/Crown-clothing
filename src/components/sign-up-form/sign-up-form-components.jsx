@@ -4,17 +4,17 @@ import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button, { button_type_classes } from "../button/button-component";
 
-import { SignUpContainer, Header } from "./sign-up-form.styles.jsx";
+import { SignUpContainer, Header } from "./sign-up-form.styles";
 import { SignUp } from "../../store/user/user.saga";
 
-type FormFieldType = {
-  displayName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+// type FormFieldType = {
+//   displayName: string;
+//   email: string;
+//   password: string;
+//   confirmPassword: string;
+// };
 
-const defaultFormField: FormFieldType = {
+const defaultFormField = {
   displayName: "",
   email: "",
   password: "",
@@ -55,7 +55,7 @@ const SignUpForm = () => {
     }
   };
 
-  const onChangeHandler = (event): void => {
+  const onChangeHandler = (event) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

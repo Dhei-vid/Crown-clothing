@@ -2,7 +2,7 @@ import { takeLatest, all, call, put } from "redux-saga/effects";
 
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 import { fetchCategorySuccess, fetchCategoryFailed } from "./category.action";
-import CATEGORY_ACTION_TYPES from "./category.types";
+import { CATEGORY_ACTION_TYPES } from "./category.types";
 
 export function* fetchCategoryAsync() {
   // instead of await, we use yield
