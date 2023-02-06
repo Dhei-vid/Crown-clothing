@@ -23,26 +23,28 @@ export const INITIAL_STATE: CategoryState = {
 export const categoryReducer = (
   state = INITIAL_STATE,
   action = {} as AnyAction
-) => {
-  switch (action.type) {
-    case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        categories: action.payload,
-      };
-    case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_FAILED:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload,
-      };
-    default:
-      return state;
+): CategoryState => {
+  if (fetchCategoryStart.match(action)) {
+    return {
+      ...state,
+      isLoading: true,
+    };
   }
+
+  if (fetchCategorySuccess.match(action)) {
+    return {
+      ...state,
+      isLoading: false,
+      categories: action.payload,
+    };
+  }
+  if (fetchCategoryFailed.match(action)) {
+    return {
+      ...state,
+      isLoading: false,
+      error: action.payload,
+    };
+  }
+
+  return state;
 };
