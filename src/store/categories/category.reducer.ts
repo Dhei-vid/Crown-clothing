@@ -1,5 +1,11 @@
+import { AnyAction } from "redux";
 import { CATEGORY_ACTION_TYPES, Category } from "./category.types";
-import { categoryAction } from "./category.action";
+import {
+  categoryAction,
+  fetchCategoryStart,
+  fetchCategorySuccess,
+  fetchCategoryFailed,
+} from "./category.action";
 
 export type CategoryState = {
   readonly categories: Category[];
@@ -16,7 +22,7 @@ export const INITIAL_STATE: CategoryState = {
 // we used a discrimatory union to state what the action type must be
 export const categoryReducer = (
   state = INITIAL_STATE,
-  action = {} as categoryAction
+  action = {} as AnyAction
 ) => {
   switch (action.type) {
     case CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START:
