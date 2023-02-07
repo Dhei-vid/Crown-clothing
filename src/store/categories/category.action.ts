@@ -20,12 +20,6 @@ export type FetchCategoryFailed = ActionWithPayload<
   Error
 >;
 
-// Union, combining multilple types
-export type categoryAction =
-  | FetchCategoryStart
-  | FetchCategorySuccess
-  | FetchCategoryFailed;
-
 export const fetchCategoryStart = withMatcher((): FetchCategoryStart => {
   return createAction(CATEGORY_ACTION_TYPES.FETCH_CURRENT_CATEGORY_START);
 });
