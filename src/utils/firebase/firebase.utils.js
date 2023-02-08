@@ -1,5 +1,5 @@
 // TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-librariesnode 
+// https://firebase.google.com/docs/web/setup#available-librariesnode
 
 import { initializeApp } from "firebase/app";
 import {
@@ -91,18 +91,8 @@ export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
-  // await Promise.reject(new Error("new error whoops"));
-
   const querySnapShot = await getDocs(q);
   return querySnapShot.docs.map((docSnapshot) => docSnapshot.data());
-
-  // const categoryMap = querySnapShot.docs.reduce((acc, docSnapshot) => {
-  //   const { title, items } = docSnapshot.data();
-  //   acc[title.toLowerCase()] = items;
-  //   return acc;
-  // }, {});
-
-  // return categoryMap;
 };
 
 export const createUserDocumentFromAuth = async (
@@ -115,10 +105,8 @@ export const createUserDocumentFromAuth = async (
   const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapShot = await getDoc(userDocRef);
-  // console.log(userSnapShot);
-  // with exists method we can check if a document exists in database
-  // console.log(userSnapShot.exists());
 
+  // with exists method we can check if a document exists in database
   if (!userSnapShot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
