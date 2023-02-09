@@ -5,17 +5,17 @@ export enum CATEGORY_ACTION_TYPES {
   FETCH_CURRENT_CATEGORY_FAILED = "category/SET_CURRENT_CATEGORY_FAIL",
 }
 
-export type Category = {
-  title: string;
-  imageUrl: string;
-  items: CategoryItem[];
-};
-
 export type CategoryItem = {
   id: number;
   imageUrl: string;
   name: string;
   price: number;
+};
+
+export type Category = {
+  title: string;
+  imageUrl: string;
+  items: CategoryItem[];
 };
 
 export type CategoryMap = {
