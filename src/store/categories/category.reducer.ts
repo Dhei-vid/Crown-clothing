@@ -18,7 +18,6 @@ export const INITIAL_STATE: CategoryState = {
   error: null,
 };
 
-// we used a discrimatory union to state what the action type must be
 export const categoryReducer = (
   state = INITIAL_STATE,
   action = {} as AnyAction
