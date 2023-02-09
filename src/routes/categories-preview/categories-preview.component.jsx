@@ -14,9 +14,6 @@ const CategoriesPreview = () => {
   const isLoading = useSelector(selectCategoriesisLoading);
 
   return (
-    /* this empty tag is a shorthand for fragment 
-    <></>
-    */
     <>
       {isLoading ? (
         <Spinner />
