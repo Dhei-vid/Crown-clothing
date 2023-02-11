@@ -66,7 +66,10 @@ export const signInWithGooglePopup = () =>
 export const db = getFirestore();
 
 // setting up the collection reference
-export const addCollectionDocuments = async (collectionKey, objectsToAdd) => {
+export const addCollectionDocuments = async (
+  collectionKey: any,
+  objectsToAdd: any
+) => {
   // To create the collection reference
   const collectionRef = collection(db, collectionKey);
 
@@ -79,7 +82,7 @@ export const addCollectionDocuments = async (collectionKey, objectsToAdd) => {
    * 2. I want to batch.set on te document reference given by firebase
    * 3. I have to await firing the batch
    */
-  objectsToAdd.forEach((object) => {
+  objectsToAdd.forEach((object: any) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
@@ -96,7 +99,7 @@ export const getCategoriesAndDocuments = async () => {
 };
 
 export const createUserDocumentFromAuth = async (
-  userAuth,
+  userAuth: any,
   additionalInformation = {}
 ) => {
   if (!userAuth) return;
@@ -118,7 +121,7 @@ export const createUserDocumentFromAuth = async (
         createdAt,
         ...additionalInformation,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("error from creating user", error.message);
     }
   }
