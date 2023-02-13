@@ -114,7 +114,7 @@ export type AdditionalInformation = {
   displayName?: string;
 };
 
-export type UserDocument = {
+export type UserData = {
   displayName: string;
   createdAt: Date;
   email: string;
@@ -123,7 +123,7 @@ export type UserDocument = {
 export const createUserDocumentFromAuth = async (
   userAuth: User,
   additionalInformation = {}
-): Promise<void | QueryDocumentSnapshot<UserDocument>> => {
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
   if (!userAuth) return;
 
   // doc gets 3 params
@@ -147,7 +147,7 @@ export const createUserDocumentFromAuth = async (
       console.error("error from creating user", error.message);
     }
   }
-  return userSnapShot as QueryDocumentSnapshot<UserDocument>;
+  return userSnapShot as QueryDocumentSnapshot<UserData>;
 };
 
 // For the sign in Component to create a new user
