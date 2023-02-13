@@ -6,8 +6,8 @@ import FormInput from "../form-input/form-input.component";
 import Button, { button_type_classes } from "../button/button-component";
 
 import {
-  GoogleSignInStart,
-  EmailSignInStart,
+  googleSignInStart,
+  emailSignInStart,
 } from "../../store/user/user.action";
 
 import {
@@ -32,14 +32,14 @@ const SignInForm = () => {
     setFormFields(defaultFormField);
   };
 
-  const signInWithGoogle = async () => dispatch(GoogleSignInStart());
+  const signInWithGoogle = async () => dispatch(googleSignInStart());
 
   // authenticate user
   const onHandleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      dispatch(EmailSignInStart(email, password));
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (e) {
       if (e.code === "auth/wrong-password") {
