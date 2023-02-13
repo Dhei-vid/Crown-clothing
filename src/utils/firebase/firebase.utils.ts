@@ -10,6 +10,8 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  User,
+  NextOrObserver,
 } from "firebase/auth";
 
 /**
@@ -25,7 +27,10 @@ import {
   writeBatch,
   query,
   getDocs,
+  QueryDocumentSnapshot,
 } from "firebase/firestore/lite";
+
+import { Category } from "../../store/categories/category.types";
 
 // this config function enables us to attach this firebase instance to the instance we have created online
 // Your web app's Firebase configuration
@@ -65,11 +70,16 @@ export const signInWithGooglePopup = () =>
 // Setting up the database access implementation
 export const db = getFirestore();
 
+// setting type of objectToAdd
+export type ObjectToAdd = {
+  title: string;
+};
+
 // setting up the collection reference
-export const addCollectionDocuments = async (
-  collectionKey: any,
-  objectsToAdd: any
-) => {
+export const addCollectionDocuments = async <T extends ObjectToAdd>(
+  collectionKey: string,
+  objectsToAdd: T[]
+): Promise<void> => {
   // To create the collection reference
   const collectionRef = collection(db, collectionKey);
 
@@ -79,10 +89,10 @@ export const addCollectionDocuments = async (
   /**
    * for creating the batch for each of the objects items
    * 1. Get the document reference
-   * 2. I want to batch.set on te document reference given by firebase
+   * 2. I want to batch.set on the document reference given by firebase
    * 3. I have to await firing the batch
    */
-  objectsToAdd.forEach((object: any) => {
+  objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
@@ -90,18 +100,30 @@ export const addCollectionDocuments = async (
   await batch.commit();
 };
 
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
   const querySnapShot = await getDocs(q);
-  return querySnapShot.docs.map((docSnapshot) => docSnapshot.data());
+  return querySnapShot.docs.map(
+    (docSnapshot) => docSnapshot.data() as Category
+  );
+};
+
+export type AdditionalInformation = {
+  displayName?: string;
+};
+
+export type UserDocument = {
+  displayName: string;
+  createdAt: Date;
+  email: string;
 };
 
 export const createUserDocumentFromAuth = async (
-  userAuth: any,
+  userAuth: User,
   additionalInformation = {}
-) => {
+): Promise<void | QueryDocumentSnapshot<UserDocument>> => {
   if (!userAuth) return;
 
   // doc gets 3 params
@@ -125,18 +147,24 @@ export const createUserDocumentFromAuth = async (
       console.error("error from creating user", error.message);
     }
   }
-  return userSnapShot;
+  return userSnapShot as QueryDocumentSnapshot<UserDocument>;
 };
 
 // For the sign in Component to create a new user
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
+export const createAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
 // For the sign in Component
-export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+export const signInAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
   if (!email || !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
@@ -149,12 +177,12 @@ export const signOutUser = async () => {
 
 // Creating a listener that listens for changes in the code
 // onAuthStateChanged gets two parameters, the auth and a callback function
-export const onAuthStateChangedListener = (callback) =>
+export const onAuthStateChangedListener = (callback: NextOrObserver<User>) =>
   // the onAuthStateChanged is an open state listener (whenever the auth changes it runs)
   // the issue is that we need to tell it to unmount when the userContext unmounts (memory leak)
   onAuthStateChanged(auth, callback);
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
