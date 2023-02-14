@@ -9,13 +9,13 @@ import {
   userSignOutFailed,
 } from "./user.action";
 
-export type InitialState = {
+export type UserState = {
   readonly currentUser: UserData | null;
   readonly isLoading: boolean;
   readonly error: Error | null;
 };
 
-export const INITIAL_STATE: InitialState = {
+export const INITIAL_STATE: UserState = {
   currentUser: null,
   isLoading: false,
   error: null,
