@@ -1,9 +1,11 @@
 import { createSelector } from "reselect";
 import { CategoryState } from "./category.reducer";
 import { CategoryMap } from "./category.types";
+import { RootState } from "../store";
 
 // To extend into selectors, we have to create input selectors and output selectors.
-const selectCategoryReducer = (state: any): CategoryState => state.category;
+const selectCategoryReducer = (state: RootState): CategoryState =>
+  state.category;
 
 // createSelector create a memoized selector (takes 2 arg - input selector and output selector)
 // the only time this will be rerun is if the input value (category object) is different
