@@ -8,7 +8,7 @@ import Authentication from "./routes/Authentication/authentication-component.jsx
 import Shop from "./routes/shop/shop-components.jsx";
 import CheckOut from "./routes/checkout/checkout-component.jsx";
 
-import { checkUserSession } from "./store/user/user.action.js";
+import { checkUserSession } from "./store/user/user.action";
 
 const App = () => {
   const dispatch = useDispatch();
