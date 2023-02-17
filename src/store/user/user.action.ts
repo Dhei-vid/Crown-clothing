@@ -9,6 +9,7 @@ import {
   createAction,
   withMatcher,
 } from "../../utils/reducers/reducers.utils";
+import { User } from "firebase/auth";
 
 // TYPES
 export type SetCurrentUser = ActionWithPayload<
@@ -43,7 +44,7 @@ export type EmailSignUpStart = ActionWithPayload<
 
 export type UserSignUpSuccess = ActionWithPayload<
   USER_ACTION_TYPES.SIGN_UP_SUCCESS,
-  { user: UserData; additionalDetails: AdditionalInformation }
+  { user: User; additionalDetails: AdditionalInformation }
 >;
 
 export type UserSignUpFailed = ActionWithPayload<
@@ -83,7 +84,7 @@ export const emailSignInStart = withMatcher(
 );
 
 export const userSignInSuccess = withMatcher(
-  (user: UserData): UserSignInSuccess =>
+  (user: UserData & { id: string }): UserSignInSuccess =>
     createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user)
 );
 
@@ -102,10 +103,7 @@ export const emailSignUpStart = withMatcher(
 );
 
 export const userSignUpSuccess = withMatcher(
-  (
-    user: UserData,
-    additionalDetails: AdditionalInformation
-  ): UserSignUpSuccess =>
+  (user: User, additionalDetails: AdditionalInformation): UserSignUpSuccess =>
     createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, { user, additionalDetails })
 );
 
