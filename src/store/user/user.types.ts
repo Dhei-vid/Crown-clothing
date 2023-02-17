@@ -1,6 +1,3 @@
-import { AdditionalInformation } from "../../utils/firebase/firebase.utils";
-import { UserData } from "../../utils/firebase/firebase.utils";
-
 export enum USER_ACTION_TYPES {
   SET_CURRENT_USER = "user/SET_CURRENT_USER",
   CHECK_USER_SESSION_START = "user/CHECK_USER_SESSION_START",
