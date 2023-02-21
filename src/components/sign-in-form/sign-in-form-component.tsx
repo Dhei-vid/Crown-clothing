@@ -39,11 +39,8 @@ const SignInForm = () => {
     try {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
-    } catch (e: any) {
-      if (e.code === "auth/wrong-password") {
-        alert("Incorrect password");
-      } else if (e.code === "auth/user-not-found")
-        alert("Email does not exist");
+    } catch (error) {
+      console.error(error);
     }
   };
 
