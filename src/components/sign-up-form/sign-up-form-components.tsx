@@ -8,13 +8,6 @@ import Button, { button_type_classes } from "../button/button-component";
 import { SignUpContainer, Header } from "./sign-up-form.styles";
 import { emailSignUpStart } from "../../store/user/user.action";
 
-// type FormFieldType = {
-//   displayName: string;
-//   email: string;
-//   password: string;
-//   confirmPassword: string;
-// };
-
 const defaultFormField = {
   displayName: "",
   email: "",
