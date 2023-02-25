@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import {
   CartItemsContainer,
   Image,
