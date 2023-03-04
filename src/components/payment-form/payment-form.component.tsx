@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { useSelector } from "react-redux";
+import { StripeCardElement } from "@stripe/stripe-js";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 import { selectCartTotal } from "../../store/cart/cart.selectors";
@@ -11,6 +12,11 @@ import {
   FormContainer,
   PaymentButton,
 } from "./payment-form.styles";
+
+// type guard function
+const ifValidElement = (
+  card: StripeCardElement | null
+): card is StripeCardElement => card !== null;
 
 const PaymentForm = () => {
   // used to make request in strip format
@@ -42,10 +48,15 @@ const PaymentForm = () => {
       paymentIntent: { client_secret },
     } = response;
 
+    // performed a type guard
+    const cardDetails = elements.getElement(CardElement);
+
+    if (!ifValidElement(cardDetails)) return;
+
     // confirming payment from client
     const paymentResult = await stripe.confirmCardPayment(client_secret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: cardDetails,
         billing_details: {
           name: currentUser ? currentUser.displayName : "Guest",
         },
