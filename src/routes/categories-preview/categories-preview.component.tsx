@@ -6,7 +6,7 @@ import {
 } from "../../store/categories/category.selectors";
 
 import Spinner from "../../components/spinner/spinner.component";
-import CategoryPreview from "../../components/category-preview/category-preview.components";
+import CategoryPreview from "../../components/category-preview/category-preview.component";
 
 const CategoriesPreview = () => {
   const categoriesMap = useSelector(selectCategoryMap);

@@ -1,4 +1,4 @@
-import CategoryDirectory from "../../components/category-dir/category-dir.jsx";
+import CategoryDirectory from "../../components/category-dir/category-dir";
 import { Outlet } from "react-router-dom";
 
 const Home = () => {
