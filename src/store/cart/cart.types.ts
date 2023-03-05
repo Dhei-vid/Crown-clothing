@@ -11,4 +11,5 @@ export type CartItem = Category & {
   id: number;
   quantity: number;
   price: number;
+  name: string;
 };
