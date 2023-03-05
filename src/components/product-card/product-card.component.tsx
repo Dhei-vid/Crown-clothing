@@ -13,7 +13,7 @@ import {
   OpaqueButton,
   Footer,
   Price,
-} from "./product-card.style.jsx";
+} from "./product-card.style";
 
 export type Products = {
   products: CategoryItem;
