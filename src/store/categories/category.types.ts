@@ -12,6 +12,13 @@ export type CategoryItem = {
   price: number;
 };
 
+export type CategoriesDirItem = {
+  id: number;
+  imageUrl: string;
+  routes: string;
+  title: string;
+};
+
 export type Category = {
   title: string;
   imageUrl: string;
