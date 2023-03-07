@@ -19,7 +19,7 @@ import {
   Arrow,
   Value,
   RemoveButton,
-} from "./checkout-item.styles.js";
+} from "./checkout-item.styles";
 
 type CheckOutItem = {
   cartItem: CartItem;
