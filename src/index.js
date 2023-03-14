@@ -1,5 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
+import ReactDOM from "react-dom/client";
+
 import App from "./App";
 
 import { BrowserRouter } from "react-router-dom";
@@ -13,7 +15,10 @@ import { stripePromise } from "./utils/stripe/stripe.utils";
 import { store, persistor } from "./store/store";
 import "./index.scss";
 
-const rootElement = document.getElementById("root");
+// const rootElement = document.getElementById("root");
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = document.getElementById("root");
+
 // by wrapping the App in the browser router there are some implementations that we are allowing the brower router to handle for us like keepng track of previous navigations
 render(
   <React.StrictMode>
@@ -27,7 +32,7 @@ render(
       </PersistGate>
     </Provider>
   </React.StrictMode>,
-  rootElement
+  root
 );
 
 // If you want to start measuring performance in your app, pass a function
