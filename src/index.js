@@ -16,9 +16,6 @@ import * as serviceWorkerRegistation from "./serviceWorkerRegistration";
 import { store, persistor } from "./store/store";
 import "./index.scss";
 
-// React 17
-// const root = document.getElementById("root");
-
 // react 18
 const container = document.getElementById("root");
 const root = createRoot(container);
