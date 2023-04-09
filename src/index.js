@@ -1,5 +1,4 @@
 import React from "react";
-// import { render } from "react-dom";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 
@@ -14,7 +13,6 @@ import { stripePromise } from "./utils/stripe/stripe.utils";
 import * as serviceWorkerRegistation from "./serviceWorkerRegistration";
 
 import { store, persistor } from "./store/store";
-import "./index.scss";
 
 // react 18
 const container = document.getElementById("root");
@@ -40,5 +38,5 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-// running the service worker after code runs
+// running the service worker after code runs - cache first
 serviceWorkerRegistation.register();
