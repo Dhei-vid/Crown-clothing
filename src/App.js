@@ -2,6 +2,7 @@ import { useEffect, Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+import { GlobalStyle } from "./global.styles";
 import Spinner from "./components/spinner/spinner.component";
 
 import { checkUserSession } from "./store/user/user.action";
@@ -25,6 +26,7 @@ const App = () => {
 
   return (
     <Suspense fallback={<Spinner />}>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Navigation />}>
           {/* index == true tells the route that when we match the "/" then the home component should be rendered too */}
