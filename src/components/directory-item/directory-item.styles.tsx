@@ -13,8 +13,11 @@ export const BackgroundImage = styled.div`
   background-image: ${({ imageUrl }: ImageUrl) => `url(${imageUrl})`};
 `;
 
+console.log("directory Item");
+
 export const DirectoryItemBody = styled.div`
   height: 8rem;
+  max-width: 35%;
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -32,7 +35,7 @@ export const DirectoryItemBody = styled.div`
   h2 {
     font-weight: bold;
     margin: 0 6px 0;
-    font-size: 22px;
+    font-size: 20px;
     color: #4a4a4a;
     text-transform: uppercase;
   }
@@ -45,7 +48,7 @@ export const DirectoryItemBody = styled.div`
 
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
-  height: 250px;
+  height: 240px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -74,5 +77,9 @@ export const DirectoryItemContainer = styled.div`
     &:last-child {
       margin-left: 7.5px;
     }
+  }
+
+  @media screen and (max-width: 800px) {
+    height: 200px;
   }
 `;
