@@ -8,6 +8,10 @@ export const ProductCardContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 `;
 
 export const Image = styled.img`
@@ -24,6 +28,10 @@ export const Image = styled.img`
       opacity: 0.85;
       display: flex;
     }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
   }
 `;
 
