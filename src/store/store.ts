@@ -6,8 +6,6 @@ import logger from "redux-logger";
 
 import { rootSaga } from "./rootSaga";
 import { rootReducers } from "./rootReducer";
-// import thunk from "redux-thunk";
-// import { loggerMiddleWare } from "../middleware/logger";
 
 export type RootState = ReturnType<typeof rootReducers>;
 
@@ -19,15 +17,8 @@ export type RootState = ReturnType<typeof rootReducers>;
  * Currying a function (a function that returns another function)
  */
 
-// const middleWare = [loggerMiddleWare];
-
 // checking if the application is in development or production, change the "development" to "production"
 // The middleware will console.log depending on what you pick
-
-// const middleWare = [
-//   process.env.NODE_ENV !== "production" && logger,
-//   thunk,
-// ].filter(Boolean); (for the thunk middleware)
 
 declare global {
   interface Window {
