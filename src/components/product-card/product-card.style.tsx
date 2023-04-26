@@ -31,7 +31,7 @@ export const Image = styled.img`
   }
 
   @media screen and (max-width: 800px) {
-    width: 40vw;
+    width: 45vw;
 
     button {
       display: block;
@@ -76,7 +76,7 @@ export const OpaqueButton = styled(ButtonStyle)`
 `;
 
 export const Footer = styled.div`
-  width: 10%;
+  width: 98%;
   height: 5%;
   display: flex;
   justify-content: space-between;
@@ -85,8 +85,4 @@ export const Footer = styled.div`
 
 export const Price = styled.div`
   width: 10%;
-
-  @media screen and (max-width: 800px) {
-    width: 0%;
-  }
 `;
