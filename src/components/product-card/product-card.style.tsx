@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Button from "../button/button-component";
 
 export const ProductCardContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -76,13 +76,17 @@ export const OpaqueButton = styled(ButtonStyle)`
 `;
 
 export const Footer = styled.div`
-  width: 100%;
+  width: 10%;
   height: 5%;
   display: flex;
   justify-content: space-between;
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 export const Price = styled.div`
   width: 10%;
+
+  @media screen and (max-width: 800px) {
+    width: 0%;
+  }
 `;
