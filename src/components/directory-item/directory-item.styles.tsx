@@ -13,8 +13,6 @@ export const BackgroundImage = styled.div`
   background-image: ${({ imageUrl }: ImageUrl) => `url(${imageUrl})`};
 `;
 
-console.log("directory Item");
-
 export const DirectoryItemBody = styled.div`
   height: 8rem;
   max-width: 35%;
