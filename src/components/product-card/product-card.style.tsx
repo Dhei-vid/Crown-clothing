@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Button from "../button/button-component";
 
 export const ProductCardContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -10,7 +10,7 @@ export const ProductCardContainer = styled.div`
   position: relative;
 
   @media screen and (max-width: 800px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 
